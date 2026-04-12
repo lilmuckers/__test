@@ -36,6 +36,7 @@ It is the sole persistence mechanism for task state across agent sessions.
 ## Entry Template
 
 ```
+
 ## Task TASK-ID - Short title
 
 ```json
@@ -57,4 +58,27 @@ It is the sole persistence mechanism for task state across agent sessions.
   ]
 }
 ```
+```
+## Task boop-webpage-spec - Minimal boop webpage spec-first definition
+
+```json
+{
+  "task": "boop-webpage-spec",
+  "state": "blocked",
+  "current_action": "Named-agent dispatch to spec-lapwing failed; spec readiness cannot be established",
+  "next_action": "Human operator must restore or approve access to the named spec agent before implementation can begin",
+  "owner": "orchestrator-lapwing",
+  "history": [
+    {
+      "at": "2026-04-12T21:12:57Z",
+      "action": "Started strict spec-first workflow and prepared spec handoff",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-12T21:13:20Z",
+      "action": "Named-agent dispatch failed; workflow blocked pending operator intervention",
+      "by": "orchestrator-lapwing"
+    }
+  ]
+}
 ```
