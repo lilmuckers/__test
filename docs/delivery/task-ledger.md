@@ -145,13 +145,13 @@ It is the sole persistence mechanism for task state across agent sessions.
 ```json
 {
   "task": "boop-webpage-issue-3",
-  "state": "needs_review",
-  "current_action": "QA approved PR #8 and routed it to Spec for mergeability review",
-  "next_action": "Spec to review PR #8 for project-level fit and apply spec-satisfied if appropriate",
-  "owner": "spec-lapwing",
+  "state": "done",
+  "current_action": "PR #8 merged and issue #3 is being closed",
+  "next_action": "Proceed to issue #4 for persistence, accessibility, and mobile support",
+  "owner": "orchestrator-lapwing",
   "branch": "feat/issue-3-svg-crab-states",
   "pr": "https://github.com/lilmuckers/__test/pull/8",
-  "expected_callback_at": "2026-04-13T23:55:00Z",
+  "expected_callback_at": null,
   "history": [
     {
       "at": "2026-04-13T21:44:30Z",
@@ -182,6 +182,38 @@ It is the sole persistence mechanism for task state across agent sessions.
       "at": "2026-04-13T21:56:00Z",
       "action": "QA approved PR #8, posted a visible review summary, and applied qa-approved",
       "by": "qa-lapwing"
+    },
+    {
+      "at": "2026-04-13T22:00:00Z",
+      "action": "Spec approved PR #8, posted a visible review summary, and applied spec-satisfied",
+      "by": "spec-lapwing"
+    },
+    {
+      "at": "2026-04-13T22:02:00Z",
+      "action": "Applied orchestrator-approved, cleared draft state, and confirmed merge gate success for PR #8",
+      "by": "orchestrator-lapwing"
+    }
+  ]
+}
+```
+
+## Task boop-webpage-issue-4 - Add persistence, accessibility, and mobile support
+
+```json
+{
+  "task": "boop-webpage-issue-4",
+  "state": "in_progress",
+  "current_action": "Preparing Builder handoff for issue #4 after merge of PR #8",
+  "next_action": "Builder to implement issue #4 on a new feature branch and report back with PR details",
+  "owner": "builder-lapwing",
+  "branch": null,
+  "pr": null,
+  "expected_callback_at": "2026-04-13T23:15:00Z",
+  "history": [
+    {
+      "at": "2026-04-13T22:03:00Z",
+      "action": "Selected issue #4 as the next ready-for-build slice after merging PR #8",
+      "by": "orchestrator-lapwing"
     }
   ]
 }
