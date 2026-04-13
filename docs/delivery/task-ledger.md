@@ -65,9 +65,9 @@ It is the sole persistence mechanism for task state across agent sessions.
 {
   "task": "boop-webpage-spec",
   "state": "needs_review",
-  "current_action": "QA review is being requested for Builder PR #7 covering issue #2",
-  "next_action": "Await explicit QA callback for PR #7, then decide mergeability and sequencing for issue #3",
-  "owner": "qa-lapwing",
+  "current_action": "QA approved PR #7 for issue #2; awaiting Spec mergeability review",
+  "next_action": "Await explicit Spec callback on PR #7, then decide whether to apply orchestrator approval",
+  "owner": "spec-lapwing",
   "branch": "feat/issue-2-boop-core-shell",
   "pr": "https://github.com/lilmuckers/__test/pull/7",
   "history": [
@@ -114,6 +114,16 @@ It is the sole persistence mechanism for task state across agent sessions.
     {
       "at": "2026-04-13T16:46:30Z",
       "action": "Recorded Builder PR details and routed PR #7 to QA review",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-13T19:33:09Z",
+      "action": "Re-dispatched QA for PR #7 review",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-13T19:37:45Z",
+      "action": "QA approved PR #7 and routed to Spec for mergeability review",
       "by": "orchestrator-lapwing"
     }
   ]
