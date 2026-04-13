@@ -15,12 +15,13 @@ Define the minimum viable scope for a single-page interactive boop app and act a
 - In scope:
   - One directly accessible single-page boop app
   - A dark-background layout with a clearly intentional visual design rather than an unstyled placeholder page
-  - A simple vector-designed crab character rendered in-page
+  - A simple vector-designed crab character rendered in-page as SVG
   - A visible boop counter
   - A `Boop` button that increments the counter by 1
   - A `De-boop` button that decrements the counter by 1
-  - Crab expression/state changes tied to the current interaction state
+  - Crab expression/state changes tied directly to boop count state
   - Local persistence of the boop count using browser local storage
+  - Screen-reader support with a high-contrast accessible presentation, including an orange crab against the dark background
   - Basic page metadata, including a meaningful document title
   - Minimal supporting copy only if needed to make the interaction legible
   - Release readiness that includes a deployable GitHub Pages output for the project repository
@@ -42,20 +43,21 @@ Define the minimum viable scope for a single-page interactive boop app and act a
 - The primary interaction area must be visible on initial load without requiring navigation.
 - The page must remain readable on standard desktop and mobile browser viewports.
 - The boop count must always be visually clear and easy to find.
-- Both primary buttons must be clearly labeled and keyboard accessible.
+- Both primary buttons must be clearly labeled, keyboard accessible, and screen-reader accessible.
+- The crab state and current count must be understandable to screen-reader users through appropriate semantic text or labels, not visual presentation alone.
 - The layout and controls must remain usable at mobile touch sizes as well as desktop scales.
+- Mobile support baseline is iPhone X class width and height as the lower-bound target for this first slice.
 - The implementation should avoid unnecessary UI chrome for this first slice.
 
 ## Design Direction
 
 - Keep the page intentionally minimal, but visibly designed.
 - Use a dark background as a firm product requirement.
-- The crab should be simple, vector-like, and charming rather than highly detailed.
+- The crab should be implemented as simple SVG artwork and should be charming rather than highly detailed.
+- The live crab should read clearly as orange against the dark background with strong visual contrast.
 - On first load with a zero count and no prior interaction history, the crab should appear neutral.
-- The emotional state changes should be obvious at a glance:
-  - positive / after `Boop`: excited crab
-  - zero or non-negative after `De-boop`: sad crab when de-booped without entering negative territory
-  - negative total: skeletal death-crab holding a scythe
+- The emotional state changes should be obvious at a glance and must be derived from boop-count state in a deterministic way that survives reload.
+- Negative total: skeletal death-crab holding a scythe.
 - Visual transitions between crab states may be lightly animated, but should remain simple and non-essential to understanding the state.
 - Styling may be playful, but should stay clean and bounded to this single-screen experience.
 
@@ -63,16 +65,21 @@ Define the minimum viable scope for a single-page interactive boop app and act a
 
 - Counter starts at `0` on first visit when no prior local storage value exists.
 - The current boop count must be stored in browser local storage and restored on reload.
-- The app should also persist enough local state to restore an appropriate crab presentation after reload.
+- The app should persist only the minimum local state needed to restore the same mood on reload as the user last saw for the current count state.
 - `Boop` always adds `1`.
 - `De-boop` always subtracts `1`.
-- When the most recent action is `Boop`, the crab should render in its excited form.
-- When the count is `0` or greater and the most recent action is `De-boop`, the crab should render in its sad form.
-- When the count is below `0`, the crab must render in its skeletal scythe-holding death form regardless of the last button pressed.
-- On reload:
-  - if the restored count is below `0`, render the skeletal scythe-holding death form immediately
-  - if the restored count is `0` or greater, restore the last meaningful non-death mood when available
-  - if no prior interaction history exists, render the neutral crab state
+- Mood must remain linked to boop-count state and the latest user interaction so the same visible mood is restored after reload.
+- On first load with no prior interaction history and a zero count, the crab renders neutral.
+- When the current count is below `0`, the crab must render in its skeletal scythe-holding death form regardless of the latest action.
+- When the current count is `0` or greater and the latest action was `Boop`, the crab renders excited.
+- When the current count is `0` or greater and the latest action was `De-boop`, the crab renders sad.
+- On reload, the app must restore the same mood the user last saw for the persisted count rather than recomputing a different non-death default.
+
+## Implementation Direction
+
+- Builder should prefer the lightest viable static-compatible stack that makes GitHub Pages deployment straightforward.
+- The stack should avoid unnecessary framework complexity for this first slice.
+- My current recommendation is a minimal static site implementation using plain HTML, CSS, JavaScript, and inline SVG unless Builder finds a compelling repo-local reason to choose otherwise.
 
 ## Test Strategy
 
@@ -82,8 +89,9 @@ Define the minimum viable scope for a single-page interactive boop app and act a
   - Executable local verification that `De-boop` decrements by 1 and changes the crab to sad when count remains non-negative
   - Executable local verification that a negative count changes the crab into the skeletal scythe-holding form
   - Executable local verification that the count persists across reloads via local storage
-  - Executable local verification that the correct crab presentation is restored on reload for neutral, non-negative, and negative cases
-  - Executable local verification that the page remains usable on mobile and desktop viewport sizes
+  - Executable local verification that the same crab mood is restored on reload for neutral, non-negative, and negative cases
+  - Executable local verification that the page remains usable on an iPhone X baseline viewport and on a standard desktop viewport
+  - Executable local verification that screen-reader-relevant semantics and visible contrast expectations are met
   - Automated test coverage if the chosen stack has a lightweight default path for interaction testing
 - Tooling:
   - Use the repo's existing or newly introduced minimal frontend tooling as justified by Builder
@@ -93,18 +101,22 @@ Define the minimum viable scope for a single-page interactive boop app and act a
 ## Acceptance Criteria
 
 - A single webpage exists in the repo and is the only user-facing scope introduced for this task.
-- Loading the page shows a dark-background boop app with a visible crab character, visible boop count, and both `Boop` and `De-boop` buttons without requiring user interaction.
+- Loading the page shows a dark-background boop app with a visible orange SVG crab character, visible boop count, and both `Boop` and `De-boop` buttons without requiring user interaction.
 - Pressing `Boop` increases the displayed count by exactly 1 and changes the crab to an excited presentation.
 - Pressing `De-boop` decreases the displayed count by exactly 1 and changes the crab to a sad presentation whenever the resulting count is still `0` or greater.
 - If the displayed count becomes negative, the crab changes into a skeletal death-like form holding a scythe.
 - Reloading the page preserves the boop count from browser local storage.
-- Reloading the page restores an appropriate crab state, including immediate death-crab rendering for negative persisted counts and neutral rendering for a fresh zero-state first visit.
+- Reloading the page restores the same visible mood the user last saw for the persisted state, including immediate death-crab rendering for negative persisted counts and neutral rendering for a fresh zero-state first visit.
 - State changes may use light visual transitions, but the page must remain understandable without relying on animation.
-- The page remains usable and readable on both mobile and desktop viewport sizes.
+- The page remains usable and readable on both desktop viewport sizes and an iPhone X baseline mobile viewport.
+- Buttons, count, and crab-state meaning are available to screen readers through appropriate semantic markup or labels.
+- The page uses strong visual contrast, including an orange live crab against the dark background.
 - The page includes a meaningful document title, not an empty or placeholder title.
 - The implementation keeps scope minimal and does not introduce unrelated product surface area.
 - A reviewer can build, run, and verify the page locally using documented README instructions.
-- The released project is viewable at the repository's GitHub Pages location.
+- The released app is published as the root index page for the `__test` repository GitHub Pages site and works correctly at `https://lilmuckers.github.io/__test/` or equivalent repository-path hosting such as `https://patrick-mckinley.com/__test/`.
+- All app asset and navigation paths required for this single-page experience work correctly as relative paths from the repository GitHub Pages subpath.
+- Once the release is treated as proper/released, release verification must include checking the live GitHub Pages URL and confirming it loads and works.
 
 ## Current delivery intent
 
@@ -114,10 +126,11 @@ Define the minimum viable scope for a single-page interactive boop app and act a
   - Builder must open the implementation PR
   - Avoid duplicate implementation PRs
   - Release readiness includes whatever minimal deployment configuration is required for the repository's GitHub Pages location
+  - The release artifact must function from the repository Pages subpath rather than assuming site-root hosting
 - Success indicators:
   - Builder receives one clear issue or equivalent visible artifact with bounded scope and testable acceptance criteria
   - QA can verify all visual state changes without needing hidden implementation knowledge
-  - Release Manager can point to a live GitHub Pages URL as the release artifact
+  - Release Manager can point to a live GitHub Pages URL as the release artifact and verify it loads correctly
 
 ## Authoritative wiki pages
 
