@@ -51,21 +51,28 @@ Define the minimum viable scope for a single-page interactive boop app and act a
 - Keep the page intentionally minimal, but visibly designed.
 - Use a dark background as a firm product requirement.
 - The crab should be simple, vector-like, and charming rather than highly detailed.
+- On first load with a zero count and no prior interaction history, the crab should appear neutral.
 - The emotional state changes should be obvious at a glance:
   - positive / after `Boop`: excited crab
   - zero or non-negative after `De-boop`: sad crab when de-booped without entering negative territory
   - negative total: skeletal death-crab holding a scythe
+- Visual transitions between crab states may be lightly animated, but should remain simple and non-essential to understanding the state.
 - Styling may be playful, but should stay clean and bounded to this single-screen experience.
 
 ## State Model
 
-- Counter starts at `0` on first visit unless no prior local storage value exists.
+- Counter starts at `0` on first visit when no prior local storage value exists.
 - The current boop count must be stored in browser local storage and restored on reload.
+- The app should also persist enough local state to restore an appropriate crab presentation after reload.
 - `Boop` always adds `1`.
 - `De-boop` always subtracts `1`.
 - When the most recent action is `Boop`, the crab should render in its excited form.
 - When the count is `0` or greater and the most recent action is `De-boop`, the crab should render in its sad form.
 - When the count is below `0`, the crab must render in its skeletal scythe-holding death form regardless of the last button pressed.
+- On reload:
+  - if the restored count is below `0`, render the skeletal scythe-holding death form immediately
+  - if the restored count is `0` or greater, restore the last meaningful non-death mood when available
+  - if no prior interaction history exists, render the neutral crab state
 
 ## Test Strategy
 
@@ -75,6 +82,7 @@ Define the minimum viable scope for a single-page interactive boop app and act a
   - Executable local verification that `De-boop` decrements by 1 and changes the crab to sad when count remains non-negative
   - Executable local verification that a negative count changes the crab into the skeletal scythe-holding form
   - Executable local verification that the count persists across reloads via local storage
+  - Executable local verification that the correct crab presentation is restored on reload for neutral, non-negative, and negative cases
   - Executable local verification that the page remains usable on mobile and desktop viewport sizes
   - Automated test coverage if the chosen stack has a lightweight default path for interaction testing
 - Tooling:
@@ -90,6 +98,8 @@ Define the minimum viable scope for a single-page interactive boop app and act a
 - Pressing `De-boop` decreases the displayed count by exactly 1 and changes the crab to a sad presentation whenever the resulting count is still `0` or greater.
 - If the displayed count becomes negative, the crab changes into a skeletal death-like form holding a scythe.
 - Reloading the page preserves the boop count from browser local storage.
+- Reloading the page restores an appropriate crab state, including immediate death-crab rendering for negative persisted counts and neutral rendering for a fresh zero-state first visit.
+- State changes may use light visual transitions, but the page must remain understandable without relying on animation.
 - The page remains usable and readable on both mobile and desktop viewport sizes.
 - The page includes a meaningful document title, not an empty or placeholder title.
 - The implementation keeps scope minimal and does not introduce unrelated product surface area.
