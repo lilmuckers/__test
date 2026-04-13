@@ -34,7 +34,7 @@ body {
 }
 
 .panel {
-  width: min(100%, 460px);
+  width: min(100%, 560px);
   padding: 32px;
   border: 1px solid var(--panel-border);
   border-radius: 24px;
@@ -61,6 +61,211 @@ h1 {
   margin: 12px 0 0;
   color: var(--muted);
   line-height: 1.6;
+}
+
+.crab-card {
+  margin: 28px 0 0;
+}
+
+.crab-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 280px;
+  padding: 18px 18px 8px;
+  border-radius: 24px;
+  border: 1px solid rgba(249, 115, 22, 0.18);
+  background: radial-gradient(circle at top, rgba(251, 146, 60, 0.18), rgba(15, 23, 42, 0.96) 55%);
+  overflow: hidden;
+}
+
+.crab-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.18) 100%);
+  pointer-events: none;
+}
+
+.crab-svg {
+  width: min(100%, 320px);
+  overflow: visible;
+}
+
+.crab-caption {
+  display: grid;
+  gap: 4px;
+  margin-top: 14px;
+}
+
+.crab-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.crab-description {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.shadow-layer ellipse {
+  fill: rgba(2, 6, 23, 0.55);
+}
+
+.legs path,
+.claw-arm,
+.mouth,
+.sad-lid,
+.rib,
+.teeth,
+.scythe-grip {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.crab-live .legs path,
+.crab-live .claw-arm {
+  stroke: #fdba74;
+  stroke-width: 10;
+}
+
+.crab-live .claw-shape {
+  fill: url(#clawGradient);
+  stroke: #ffedd5;
+  stroke-width: 3;
+}
+
+.crab-live .shell {
+  fill: url(#shellGradient);
+  stroke: #ffedd5;
+  stroke-width: 4;
+}
+
+.shell-shine {
+  fill: none;
+  stroke: rgba(255, 237, 213, 0.55);
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.cheek {
+  fill: rgba(255, 237, 213, 0.2);
+}
+
+.eyestalk {
+  fill: none;
+  stroke: #ffedd5;
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.eyeball {
+  fill: #fff7ed;
+  stroke: rgba(15, 23, 42, 0.3);
+  stroke-width: 2;
+}
+
+.pupil {
+  fill: #0f172a;
+}
+
+.sparkle {
+  fill: rgba(255, 255, 255, 0.92);
+}
+
+.mouth {
+  stroke: #7c2d12;
+  stroke-width: 8;
+}
+
+.mouth-excited,
+.mouth-sad,
+.excited-eyes,
+.sad-eyes,
+.crab-death {
+  display: none;
+}
+
+.crab-stage[data-mood='neutral'] .neutral-eyes,
+.crab-stage[data-mood='neutral'] .mouth-neutral,
+.crab-stage[data-mood='excited'] .excited-eyes,
+.crab-stage[data-mood='excited'] .mouth-excited,
+.crab-stage[data-mood='sad'] .sad-eyes,
+.crab-stage[data-mood='sad'] .mouth-sad,
+.crab-stage[data-mood='dead'] .crab-death {
+  display: inline;
+}
+
+.crab-stage[data-mood='dead'] .crab-live {
+  display: none;
+}
+
+.crab-stage[data-mood='excited'] .crab-svg {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.crab-stage[data-mood='sad'] .crab-svg {
+  transform: translateY(2px);
+}
+
+.crab-stage[data-mood='dead'] {
+  border-color: rgba(226, 232, 240, 0.18);
+  background: radial-gradient(circle at top, rgba(148, 163, 184, 0.18), rgba(15, 23, 42, 0.98) 58%);
+}
+
+.crab-stage[data-mood='dead'] .shadow-layer ellipse {
+  fill: rgba(2, 6, 23, 0.72);
+}
+
+.crab-death .legs path,
+.crab-death .shell,
+.crab-death .rib,
+.crab-death .mouth-death,
+.crab-death .teeth {
+  stroke: #e2e8f0;
+  stroke-width: 8;
+}
+
+.crab-death .shell {
+  fill: rgba(226, 232, 240, 0.08);
+}
+
+.rib-curve {
+  stroke-width: 6;
+}
+
+.bone-eye {
+  fill: rgba(241, 245, 249, 0.18);
+  stroke: #f8fafc;
+  stroke-width: 3;
+}
+
+.socket {
+  fill: #0f172a;
+}
+
+.scythe-handle,
+.scythe-blade {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.scythe-handle {
+  stroke: #8b5e3c;
+  stroke-width: 10;
+}
+
+.scythe-blade {
+  stroke: #e2e8f0;
+  stroke-width: 8;
+}
+
+.scythe-grip {
+  stroke: #e2e8f0;
+  stroke-width: 6;
 }
 
 .count-card {
@@ -126,6 +331,19 @@ h1 {
   color: var(--text);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .crab-svg,
+  .action-button {
+    transition: none;
+  }
+}
+
+@media (min-width: 481px) {
+  .crab-svg {
+    transition: transform 180ms ease;
+  }
+}
+
 @media (max-width: 480px) {
   .app-shell {
     padding: 16px;
@@ -134,6 +352,11 @@ h1 {
   .panel {
     padding: 24px;
     border-radius: 20px;
+  }
+
+  .crab-stage {
+    min-height: 248px;
+    padding: 14px 12px 4px;
   }
 
   .button-row {

@@ -9,11 +9,149 @@
   <body>
     <main class="app-shell">
       <section class="panel" aria-labelledby="app-title">
-        <p class="eyebrow">Issue #2 delivery slice</p>
+        <p class="eyebrow">Issue #3 delivery slice</p>
         <h1 id="app-title">Boop Crab Counter</h1>
         <p class="supporting-copy">
-          A tiny boop app shell with the first counter interactions wired up.
+          The crab now reacts to every boop, de-boop, and catastrophic negative spiral.
         </p>
+
+        <figure class="crab-card">
+          <div
+            id="crab-stage"
+            class="crab-stage"
+            data-mood="neutral"
+            role="img"
+            aria-labelledby="crab-stage-title crab-stage-description"
+          >
+            <svg
+              id="crab-svg"
+              class="crab-svg"
+              viewBox="0 0 320 240"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <defs>
+                <linearGradient id="shellGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#fb923c" />
+                  <stop offset="100%" stop-color="#ea580c" />
+                </linearGradient>
+                <linearGradient id="clawGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#fdba74" />
+                  <stop offset="100%" stop-color="#f97316" />
+                </linearGradient>
+              </defs>
+
+              <g class="shadow-layer" aria-hidden="true">
+                <ellipse cx="160" cy="202" rx="108" ry="20" />
+              </g>
+
+              <g class="crab-live">
+                <g class="legs left-legs">
+                  <path d="M92 160 C70 164, 48 174, 30 194" />
+                  <path d="M104 170 C82 178, 66 194, 54 212" />
+                  <path d="M118 178 C102 192, 94 206, 90 222" />
+                </g>
+                <g class="legs right-legs">
+                  <path d="M228 160 C250 164, 272 174, 290 194" />
+                  <path d="M216 170 C238 178, 254 194, 266 212" />
+                  <path d="M202 178 C218 192, 226 206, 230 222" />
+                </g>
+
+                <g class="claws left-claw">
+                  <path class="claw-arm" d="M106 112 C78 102, 62 82, 54 58" />
+                  <path class="claw-shape" d="M34 34 C14 44, 10 68, 26 82 C40 92, 58 88, 64 72 C58 74, 44 70, 38 58 C46 58, 60 52, 66 40 C56 26, 44 24, 34 34 Z" />
+                </g>
+
+                <g class="claws right-claw">
+                  <path class="claw-arm" d="M214 112 C242 102, 258 82, 266 58" />
+                  <path class="claw-shape" d="M286 34 C306 44, 310 68, 294 82 C280 92, 262 88, 256 72 C262 74, 276 70, 282 58 C274 58, 260 52, 254 40 C264 26, 276 24, 286 34 Z" />
+                </g>
+
+                <g class="body">
+                  <path class="shell" d="M88 130 C88 86, 120 54, 160 54 C200 54, 232 86, 232 130 C232 172, 200 192, 160 192 C120 192, 88 172, 88 130 Z" />
+                  <path class="shell-shine" d="M116 116 C124 88, 148 72, 174 72" />
+                  <ellipse class="cheek cheek-left" cx="122" cy="136" rx="12" ry="7" />
+                  <ellipse class="cheek cheek-right" cx="198" cy="136" rx="12" ry="7" />
+                </g>
+
+                <g class="eyes neutral-eyes">
+                  <path class="eyestalk" d="M138 84 C132 62, 132 46, 138 30" />
+                  <path class="eyestalk" d="M182 84 C188 62, 188 46, 182 30" />
+                  <circle class="eyeball" cx="138" cy="28" r="14" />
+                  <circle class="eyeball" cx="182" cy="28" r="14" />
+                  <circle class="pupil" cx="138" cy="30" r="5" />
+                  <circle class="pupil" cx="182" cy="30" r="5" />
+                </g>
+
+                <g class="eyes excited-eyes">
+                  <path class="eyestalk" d="M138 84 C132 62, 130 46, 132 28" />
+                  <path class="eyestalk" d="M182 84 C188 62, 190 46, 188 28" />
+                  <circle class="eyeball" cx="132" cy="26" r="15" />
+                  <circle class="eyeball" cx="188" cy="26" r="15" />
+                  <circle class="pupil pupil-wide" cx="132" cy="26" r="5" />
+                  <circle class="pupil pupil-wide" cx="188" cy="26" r="5" />
+                  <circle class="sparkle" cx="126" cy="20" r="3" />
+                  <circle class="sparkle" cx="182" cy="20" r="3" />
+                </g>
+
+                <g class="eyes sad-eyes">
+                  <path class="eyestalk" d="M138 84 C132 62, 132 46, 138 30" />
+                  <path class="eyestalk" d="M182 84 C188 62, 188 46, 182 30" />
+                  <circle class="eyeball" cx="138" cy="28" r="14" />
+                  <circle class="eyeball" cx="182" cy="28" r="14" />
+                  <path class="sad-lid" d="M126 29 Q138 18 150 29" />
+                  <path class="sad-lid" d="M170 29 Q182 18 194 29" />
+                  <circle class="pupil" cx="138" cy="33" r="4" />
+                  <circle class="pupil" cx="182" cy="33" r="4" />
+                </g>
+
+                <g class="mouths">
+                  <path class="mouth mouth-neutral" d="M132 154 Q160 168 188 154" />
+                  <path class="mouth mouth-excited" d="M126 148 Q160 180 194 148" />
+                  <path class="mouth mouth-sad" d="M130 164 Q160 142 190 164" />
+                </g>
+              </g>
+
+              <g class="crab-death">
+                <g class="legs left-legs">
+                  <path d="M100 164 C76 170, 56 182, 38 198" />
+                  <path d="M112 176 C90 184, 74 196, 60 214" />
+                  <path d="M124 184 C108 198, 98 210, 94 224" />
+                </g>
+                <g class="legs right-legs">
+                  <path d="M220 164 C244 170, 264 182, 282 198" />
+                  <path d="M208 176 C230 184, 246 196, 260 214" />
+                  <path d="M196 184 C212 198, 222 210, 226 224" />
+                </g>
+                <g class="body">
+                  <path class="shell" d="M92 136 C92 96, 122 68, 160 68 C198 68, 228 96, 228 136 C228 174, 198 194, 160 194 C122 194, 92 174, 92 136 Z" />
+                  <path class="rib" d="M132 98 L132 176" />
+                  <path class="rib" d="M160 90 L160 182" />
+                  <path class="rib" d="M188 98 L188 176" />
+                  <path class="rib rib-curve" d="M116 126 C134 116, 186 116, 204 126" />
+                  <path class="rib rib-curve" d="M112 148 C134 138, 186 138, 208 148" />
+                  <circle class="bone-eye" cx="138" cy="118" r="12" />
+                  <circle class="bone-eye" cx="182" cy="118" r="12" />
+                  <circle class="socket" cx="138" cy="118" r="5" />
+                  <circle class="socket" cx="182" cy="118" r="5" />
+                  <path class="mouth mouth-death" d="M132 164 L188 164" />
+                  <path class="teeth" d="M140 158 L140 170 M152 158 L152 170 M164 158 L164 170 M176 158 L176 170" />
+                </g>
+                <g class="scythe">
+                  <path class="scythe-handle" d="M252 24 L214 204" />
+                  <path class="scythe-blade" d="M248 30 C286 24, 304 54, 286 88 C270 82, 254 66, 248 30 Z" />
+                  <path class="scythe-grip" d="M226 138 Q212 146 206 160" />
+                </g>
+              </g>
+            </svg>
+          </div>
+          <figcaption class="crab-caption">
+            <span id="crab-stage-title" class="crab-title">Neutral crab</span>
+            <span id="crab-stage-description" class="crab-description">
+              Fresh zero state, waiting for the next button press.
+            </span>
+          </figcaption>
+        </figure>
 
         <div class="count-card">
           <span class="count-label">Boops</span>

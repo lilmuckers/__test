@@ -1,6 +1,6 @@
 # lapwing
 
-A tiny static boop app that currently implements the core shell and counter interactions.
+A tiny static boop app that currently implements the core shell, counter interactions, and SVG crab state visuals.
 
 ## Build
 
@@ -18,10 +18,12 @@ Then open `http://127.0.0.1:4173/` in a browser.
 
 ## Verify
 
-1. Load the page and confirm the dark app shell renders with a visible count and `Boop` / `De-boop` buttons.
-2. Press `Boop` and confirm the displayed count increases by exactly 1.
-3. Press `De-boop` and confirm the displayed count decreases by exactly 1.
-4. Confirm the browser tab title is `Boop Crab Counter`.
+1. Load the page and confirm the dark app shell renders with a visible orange SVG crab, the count, and `Boop` / `De-boop` buttons.
+2. Confirm the fresh first-load zero state shows the neutral crab.
+3. Press `Boop` and confirm the displayed count increases by exactly 1 and the crab changes to an excited state.
+4. Press `De-boop` while the count remains non-negative and confirm the displayed count decreases by exactly 1 and the crab changes to a sad state.
+5. Press `De-boop` until the count becomes negative and confirm the crab changes to the skeletal scythe-holding death form.
+6. Confirm the browser tab title is `Boop Crab Counter`.
 
 ## Specification
 
