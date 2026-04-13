@@ -20,6 +20,7 @@ Define the minimum viable scope for a single-page interactive boop app and act a
   - A `Boop` button that increments the counter by 1
   - A `De-boop` button that decrements the counter by 1
   - Crab expression/state changes tied to the current interaction state
+  - Local persistence of the boop count using browser local storage
   - Basic page metadata, including a meaningful document title
   - Minimal supporting copy only if needed to make the interaction legible
   - Release readiness that includes a deployable GitHub Pages output for the project repository
@@ -39,9 +40,10 @@ Define the minimum viable scope for a single-page interactive boop app and act a
 ## Usability Requirements
 
 - The primary interaction area must be visible on initial load without requiring navigation.
-- The page must remain readable on a standard desktop browser viewport.
+- The page must remain readable on standard desktop and mobile browser viewports.
 - The boop count must always be visually clear and easy to find.
 - Both primary buttons must be clearly labeled and keyboard accessible.
+- The layout and controls must remain usable at mobile touch sizes as well as desktop scales.
 - The implementation should avoid unnecessary UI chrome for this first slice.
 
 ## Design Direction
@@ -57,7 +59,8 @@ Define the minimum viable scope for a single-page interactive boop app and act a
 
 ## State Model
 
-- Counter starts at `0` unless Builder proposes a stronger reason otherwise during implementation review.
+- Counter starts at `0` on first visit unless no prior local storage value exists.
+- The current boop count must be stored in browser local storage and restored on reload.
 - `Boop` always adds `1`.
 - `De-boop` always subtracts `1`.
 - When the most recent action is `Boop`, the crab should render in its excited form.
@@ -71,6 +74,8 @@ Define the minimum viable scope for a single-page interactive boop app and act a
   - Executable local verification that `Boop` increments by 1 and changes the crab to excited
   - Executable local verification that `De-boop` decrements by 1 and changes the crab to sad when count remains non-negative
   - Executable local verification that a negative count changes the crab into the skeletal scythe-holding form
+  - Executable local verification that the count persists across reloads via local storage
+  - Executable local verification that the page remains usable on mobile and desktop viewport sizes
   - Automated test coverage if the chosen stack has a lightweight default path for interaction testing
 - Tooling:
   - Use the repo's existing or newly introduced minimal frontend tooling as justified by Builder
@@ -84,6 +89,8 @@ Define the minimum viable scope for a single-page interactive boop app and act a
 - Pressing `Boop` increases the displayed count by exactly 1 and changes the crab to an excited presentation.
 - Pressing `De-boop` decreases the displayed count by exactly 1 and changes the crab to a sad presentation whenever the resulting count is still `0` or greater.
 - If the displayed count becomes negative, the crab changes into a skeletal death-like form holding a scythe.
+- Reloading the page preserves the boop count from browser local storage.
+- The page remains usable and readable on both mobile and desktop viewport sizes.
 - The page includes a meaningful document title, not an empty or placeholder title.
 - The implementation keeps scope minimal and does not introduce unrelated product surface area.
 - A reviewer can build, run, and verify the page locally using documented README instructions.
