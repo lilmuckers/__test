@@ -64,9 +64,9 @@ It is the sole persistence mechanism for task state across agent sessions.
 ```json
 {
   "task": "boop-webpage-spec",
-  "state": "needs_review",
-  "current_action": "Applied orchestrator approval to PR #7 after QA and Spec gates passed",
-  "next_action": "Await merge-gate rerun, then PR #7 is ready to merge if checks pass cleanly",
+  "state": "done",
+  "current_action": "PR #7 merged and issue #2 closed",
+  "next_action": "Proceed to the next ready implementation slice on issue #3",
   "owner": "orchestrator-lapwing",
   "branch": "feat/issue-2-boop-core-shell",
   "pr": "https://github.com/lilmuckers/__test/pull/7",
@@ -129,6 +129,38 @@ It is the sole persistence mechanism for task state across agent sessions.
     {
       "at": "2026-04-13T19:40:06Z",
       "action": "Applied orchestrator-approved to PR #7",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-13T21:42:46Z",
+      "action": "Merged PR #7 as 6f39dee0d7403777c5d90f2179c496edc3b42837 and confirmed issue #2 closed",
+      "by": "orchestrator-lapwing"
+    }
+  ]
+}
+```
+
+## Task boop-webpage-issue-3 - Add SVG crab states and visual design
+
+```json
+{
+  "task": "boop-webpage-issue-3",
+  "state": "in_progress",
+  "current_action": "Dispatched Builder for issue #3 after merging the core shell slice",
+  "next_action": "Await Builder callback with branch and PR details for issue #3",
+  "owner": "builder-lapwing",
+  "branch": null,
+  "pr": null,
+  "expected_callback_at": "2026-04-13T22:30:00Z",
+  "history": [
+    {
+      "at": "2026-04-13T21:44:30Z",
+      "action": "Selected issue #3 as the next ready-for-build slice after merging PR #7",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-13T21:46:00Z",
+      "action": "Dispatched Builder for issue #3 with a new-branch, new-PR handoff packet",
       "by": "orchestrator-lapwing"
     }
   ]
