@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boop Crab Counter</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="panel" aria-labelledby="app-title">
+        <p class="eyebrow">Issue #2 delivery slice</p>
+        <h1 id="app-title">Boop Crab Counter</h1>
+        <p class="supporting-copy">
+          A tiny boop app shell with the first counter interactions wired up.
+        </p>
+
+        <div class="count-card">
+          <span class="count-label">Boops</span>
+          <output id="boop-count" class="count-value" aria-live="polite">0</output>
+        </div>
+
+        <div class="button-row">
+          <button id="boop-button" class="action-button action-button-primary" type="button">
+            Boop
+          </button>
+          <button id="deboop-button" class="action-button action-button-secondary" type="button">
+            De-boop
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
