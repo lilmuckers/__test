@@ -146,12 +146,12 @@ It is the sole persistence mechanism for task state across agent sessions.
 {
   "task": "boop-webpage-issue-3",
   "state": "needs_review",
-  "current_action": "Builder delivered PR #8 for QA review",
+  "current_action": "QA workspace sync blocker was repaired and PR #8 has been re-queued for review",
   "next_action": "QA to review PR #8 and report approval or required changes",
   "owner": "qa-lapwing",
   "branch": "feat/issue-3-svg-crab-states",
   "pr": "https://github.com/lilmuckers/__test/pull/8",
-  "expected_callback_at": "2026-04-13T23:30:00Z",
+  "expected_callback_at": "2026-04-13T23:45:00Z",
   "history": [
     {
       "at": "2026-04-13T21:44:30Z",
@@ -167,6 +167,16 @@ It is the sole persistence mechanism for task state across agent sessions.
       "at": "2026-04-13T21:50:00Z",
       "action": "Builder reported PR #8 on branch feat/issue-3-svg-crab-states and requested review",
       "by": "builder-lapwing"
+    },
+    {
+      "at": "2026-04-13T21:52:00Z",
+      "action": "QA reported review blocked because its local checkout was on pr-7 instead of main",
+      "by": "qa-lapwing"
+    },
+    {
+      "at": "2026-04-13T21:53:00Z",
+      "action": "Repaired QA workspace checkout back to main, synced to 4300d86, and prepared QA retry for PR #8",
+      "by": "orchestrator-lapwing"
     }
   ]
 }
