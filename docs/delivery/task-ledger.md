@@ -145,13 +145,13 @@ It is the sole persistence mechanism for task state across agent sessions.
 ```json
 {
   "task": "boop-webpage-issue-3",
-  "state": "in_progress",
-  "current_action": "Dispatched Builder for issue #3 after merging the core shell slice",
-  "next_action": "Await Builder callback with branch and PR details for issue #3",
-  "owner": "builder-lapwing",
-  "branch": null,
-  "pr": null,
-  "expected_callback_at": "2026-04-13T22:30:00Z",
+  "state": "needs_review",
+  "current_action": "Builder delivered PR #8 for QA review",
+  "next_action": "QA to review PR #8 and report approval or required changes",
+  "owner": "qa-lapwing",
+  "branch": "feat/issue-3-svg-crab-states",
+  "pr": "https://github.com/lilmuckers/__test/pull/8",
+  "expected_callback_at": "2026-04-13T23:30:00Z",
   "history": [
     {
       "at": "2026-04-13T21:44:30Z",
@@ -162,6 +162,11 @@ It is the sole persistence mechanism for task state across agent sessions.
       "at": "2026-04-13T21:46:00Z",
       "action": "Dispatched Builder for issue #3 with a new-branch, new-PR handoff packet",
       "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-13T21:50:00Z",
+      "action": "Builder reported PR #8 on branch feat/issue-3-svg-crab-states and requested review",
+      "by": "builder-lapwing"
     }
   ]
 }
