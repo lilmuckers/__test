@@ -22,6 +22,7 @@ Define the minimum viable scope for a single-page interactive boop app and act a
   - Crab expression/state changes tied to the current interaction state
   - Basic page metadata, including a meaningful document title
   - Minimal supporting copy only if needed to make the interaction legible
+  - Release readiness that includes a deployable GitHub Pages output for the project repository
 - Out of scope / non-goals:
   - Authentication, APIs, forms, analytics, or routing beyond the single page
   - Multi-page navigation, user accounts, or back-end services
@@ -85,18 +86,21 @@ Define the minimum viable scope for a single-page interactive boop app and act a
 - If the displayed count becomes negative, the crab changes into a skeletal death-like form holding a scythe.
 - The page includes a meaningful document title, not an empty or placeholder title.
 - The implementation keeps scope minimal and does not introduce unrelated product surface area.
-- README updates are included if needed so a reviewer can build, run, and verify the page.
+- A reviewer can build, run, and verify the page locally using documented README instructions.
+- The released project is viewable at the repository's GitHub Pages location.
 
 ## Current delivery intent
 
-- Current focus: define a build-ready first slice for a single-page boop app with expressive state changes
+- Current focus: define a build-ready first slice for a single-page boop app with expressive state changes and a GitHub Pages release target
 - Important constraints:
   - Spec-first only, no implementation in this phase
   - Builder must open the implementation PR
   - Avoid duplicate implementation PRs
+  - Release readiness includes whatever minimal deployment configuration is required for the repository's GitHub Pages location
 - Success indicators:
   - Builder receives one clear issue or equivalent visible artifact with bounded scope and testable acceptance criteria
   - QA can verify all visual state changes without needing hidden implementation knowledge
+  - Release Manager can point to a live GitHub Pages URL as the release artifact
 
 ## Authoritative wiki pages
 
