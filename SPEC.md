@@ -81,6 +81,24 @@ Define the minimum viable scope for a single-page interactive boop app and act a
 - The stack should avoid unnecessary framework complexity for this first slice.
 - My current recommendation is a minimal static site implementation using plain HTML, CSS, JavaScript, and inline SVG unless Builder finds a compelling repo-local reason to choose otherwise.
 
+## Delivery Slicing
+
+The implementation should be delivered through tightly bounded issues rather than one oversized build ticket.
+
+Planned issue decomposition:
+1. Core app shell and counter interactions
+2. SVG crab states and visual design
+3. Persistence, accessibility, and mobile support
+4. GitHub Pages release readiness and repository-path deployment validation
+5. Release tracking for `v0.1.0`
+
+Expected sequencing:
+- Issue 1 establishes the working app shell and button mechanics.
+- Issue 2 adds the crab artwork and visual state presentations.
+- Issue 3 adds durable state restoration and quality requirements.
+- Issue 4 makes the app release-ready from the repository GitHub Pages subpath.
+- The release-tracking issue coordinates final verification and publication state.
+
 ## Test Strategy
 
 - Required test types:

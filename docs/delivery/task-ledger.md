@@ -59,15 +59,15 @@ It is the sole persistence mechanism for task state across agent sessions.
 }
 ```
 ```
-## Task boop-webpage-spec - Minimal boop webpage spec-first definition
+## Task boop-webpage-spec - Single-page boop crab app spec and issue decomposition
 
 ```json
 {
   "task": "boop-webpage-spec",
-  "state": "blocked",
-  "current_action": "Named-agent dispatch to spec-lapwing failed; spec readiness cannot be established",
-  "next_action": "Human operator must restore or approve access to the named spec agent before implementation can begin",
-  "owner": "orchestrator-lapwing",
+  "state": "done",
+  "current_action": "Spec definition completed and split into bounded GitHub issues #2 through #5 with release tracker #6",
+  "next_action": "Orchestrator should route issue #2 first, then sequence #3, #4, and #5, while tracking release via issue #6",
+  "owner": "spec-lapwing",
   "history": [
     {
       "at": "2026-04-12T21:12:57Z",
@@ -78,6 +78,16 @@ It is the sole persistence mechanism for task state across agent sessions.
       "at": "2026-04-12T21:13:20Z",
       "action": "Named-agent dispatch failed; workflow blocked pending operator intervention",
       "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-13T10:00:00Z",
+      "action": "Spec session resumed and refined the single-page boop crab app definition",
+      "by": "spec-lapwing"
+    },
+    {
+      "at": "2026-04-13T11:54:00Z",
+      "action": "Created umbrella issue #1, implementation issues #2-#5, and release tracker #6; spec package ready for Builder routing",
+      "by": "spec-lapwing"
     }
   ]
 }
