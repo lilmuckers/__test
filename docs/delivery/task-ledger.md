@@ -59,15 +59,17 @@ It is the sole persistence mechanism for task state across agent sessions.
 }
 ```
 ```
-## Task boop-webpage-spec - Single-page boop crab app spec and issue decomposition
+## Task boop-webpage-spec - Minimal boop webpage spec-first definition
 
 ```json
 {
   "task": "boop-webpage-spec",
-  "state": "done",
-  "current_action": "Spec definition completed and split into bounded GitHub issues #2 through #5 with release tracker #6",
-  "next_action": "Orchestrator should route issue #2 first, then sequence #3, #4, and #5, while tracking release via issue #6",
-  "owner": "spec-lapwing",
+  "state": "needs_review",
+  "current_action": "QA review is being requested for Builder PR #7 covering issue #2",
+  "next_action": "Await explicit QA callback for PR #7, then decide mergeability and sequencing for issue #3",
+  "owner": "qa-lapwing",
+  "branch": "feat/issue-2-boop-core-shell",
+  "pr": "https://github.com/lilmuckers/__test/pull/7",
   "history": [
     {
       "at": "2026-04-12T21:12:57Z",
@@ -88,6 +90,31 @@ It is the sole persistence mechanism for task state across agent sessions.
       "at": "2026-04-13T11:54:00Z",
       "action": "Created umbrella issue #1, implementation issues #2-#5, and release tracker #6; spec package ready for Builder routing",
       "by": "spec-lapwing"
+    },
+    {
+      "at": "2026-04-13T10:58:17Z",
+      "action": "Stopped before Builder because issue #2 failed readiness validation",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-13T15:11:11Z",
+      "action": "Issue #2 validated ready; preparing Builder dispatch for first implementation slice",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-13T16:40:36Z",
+      "action": "Re-dispatched Builder for issue #2 after prompt correction",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-13T16:46:00Z",
+      "action": "Builder reported PR #7 on branch feat/issue-2-boop-core-shell and requested review",
+      "by": "builder-lapwing"
+    },
+    {
+      "at": "2026-04-13T16:46:30Z",
+      "action": "Recorded Builder PR details and routed PR #7 to QA review",
+      "by": "orchestrator-lapwing"
     }
   ]
 }
