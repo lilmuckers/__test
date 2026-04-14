@@ -266,9 +266,9 @@ It is the sole persistence mechanism for task state across agent sessions.
 ```json
 {
   "task": "boop-webpage-issue-5",
-  "state": "needs_review",
-  "current_action": "Spec cleared PR #10 and Orchestrator is applying final merge gate approval",
-  "next_action": "Await merge-gate success, then merge PR #10 and verify live Pages deployment",
+  "state": "done",
+  "current_action": "PR #10 merged as ab6cfab and issue #5 closed; post-merge Pages deployment failed because GitHub Pages is not enabled for the repository",
+  "next_action": "Surface Pages enablement blocker and continue release tracking via issue #6",
   "owner": "orchestrator-lapwing",
   "expected_callback_at": "2026-04-15T00:20:00Z",
   "history": [
@@ -290,6 +290,29 @@ It is the sole persistence mechanism for task state across agent sessions.
     {
       "at": "2026-04-14T23:07:53Z",
       "action": "Spec approved PR #10, applied spec-satisfied, and confirmed mergeability in project context",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-14T23:09:02Z",
+      "action": "Merged PR #10, synced repo to ab6cfab, and found Deploy GitHub Pages workflow blocked by repository Pages not being enabled",
+      "by": "orchestrator-lapwing"
+    }
+  ]
+}
+```
+## Task boop-webpage-release-0.1.0 - Track release v0.1.0 for the boop crab app
+
+```json
+{
+  "task": "boop-webpage-release-0.1.0",
+  "state": "blocked",
+  "current_action": "Release tracking issue remains open because live GitHub Pages deployment is blocked by repository Pages not being enabled",
+  "next_action": "Human/operator to enable GitHub Pages for lilmuckers/__test using GitHub Actions, then rerun deployment and verify the live URL",
+  "owner": "orchestrator-lapwing",
+  "history": [
+    {
+      "at": "2026-04-14T23:09:02Z",
+      "action": "Post-merge deployment for PR #10 failed at actions/configure-pages because the repository has no Pages site configured",
       "by": "orchestrator-lapwing"
     }
   ]
