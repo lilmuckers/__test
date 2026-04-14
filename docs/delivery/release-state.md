@@ -32,5 +32,6 @@ Update it whenever Release Manager changes the active version, stage, blocking i
 
 ## Notes
 
-- Release artifact target is the repository GitHub Pages URL for `__test`.
+- Release artifact target is the repository GitHub Pages URL for `__test`: `https://lilmuckers.github.io/__test/`.
+- Repository-path-safe relative asset references are required so the app works from `/__test/` and equivalent custom-domain subpaths.
 - Final release verification must include checking the live GitHub Pages URL and confirming it loads and works.
