@@ -267,10 +267,10 @@ It is the sole persistence mechanism for task state across agent sessions.
 {
   "task": "boop-webpage-issue-5",
   "state": "needs_review",
-  "current_action": "QA approved PR #10 for issue #5; awaiting Spec mergeability review",
-  "next_action": "Await spec-lapwing callback on PR #10 spec satisfaction and mergeability",
-  "owner": "spec-lapwing",
-  "expected_callback_at": "2026-04-15T00:30:00Z",
+  "current_action": "Spec cleared PR #10 and Orchestrator is applying final merge gate approval",
+  "next_action": "Await merge-gate success, then merge PR #10 and verify live Pages deployment",
+  "owner": "orchestrator-lapwing",
+  "expected_callback_at": "2026-04-15T00:20:00Z",
   "history": [
     {
       "at": "2026-04-14T22:59:33Z",
@@ -285,6 +285,11 @@ It is the sole persistence mechanism for task state across agent sessions.
     {
       "at": "2026-04-14T23:06:03Z",
       "action": "QA approved PR #10, posted visible review artifacts, and applied qa-approved; routed to Spec for mergeability review",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-14T23:07:53Z",
+      "action": "Spec approved PR #10, applied spec-satisfied, and confirmed mergeability in project context",
       "by": "orchestrator-lapwing"
     }
   ]
