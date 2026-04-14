@@ -200,9 +200,9 @@ It is the sole persistence mechanism for task state across agent sessions.
 ```json
 {
   "task": "boop-webpage-issue-4",
-  "state": "needs_review",
-  "current_action": "Spec cleared PR #9 and Orchestrator is applying final merge gate approval",
-  "next_action": "Await merge-gate success, then merge PR #9 and close issue #4",
+  "state": "done",
+  "current_action": "PR #9 merged as 1442cbe and issue #4 closed",
+  "next_action": "Proceed to issue #5 for GitHub Pages release readiness",
   "owner": "orchestrator-lapwing",
   "branch": null,
   "pr": null,
@@ -251,6 +251,30 @@ It is the sole persistence mechanism for task state across agent sessions.
     {
       "at": "2026-04-14T22:58:17Z",
       "action": "Spec approved PR #9, applied spec-satisfied, and confirmed mergeability in project context",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-14T22:59:33Z",
+      "action": "Merged PR #9, synced repo to 1442cbe, and confirmed issue #4 closed",
+      "by": "orchestrator-lapwing"
+    }
+  ]
+}
+```
+## Task boop-webpage-issue-5 - Prepare GitHub Pages release readiness for the boop app
+
+```json
+{
+  "task": "boop-webpage-issue-5",
+  "state": "in_progress",
+  "current_action": "Selected issue #5 as the next ready-for-build slice after merging PR #9",
+  "next_action": "Await builder-lapwing callback with draft PR or blocker for issue #5",
+  "owner": "builder-lapwing",
+  "expected_callback_at": "2026-04-15T00:35:00Z",
+  "history": [
+    {
+      "at": "2026-04-14T22:59:33Z",
+      "action": "Issue #5 validated ready and dispatched to Builder as the next slice after issue #4",
       "by": "orchestrator-lapwing"
     }
   ]
