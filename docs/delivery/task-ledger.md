@@ -267,10 +267,10 @@ It is the sole persistence mechanism for task state across agent sessions.
 {
   "task": "boop-webpage-issue-5",
   "state": "needs_review",
-  "current_action": "Builder delivered draft PR #10 for issue #5; QA review queued",
-  "next_action": "Await qa-lapwing callback on PR #10 review",
-  "owner": "qa-lapwing",
-  "expected_callback_at": "2026-04-15T00:35:00Z",
+  "current_action": "QA approved PR #10 for issue #5; awaiting Spec mergeability review",
+  "next_action": "Await spec-lapwing callback on PR #10 spec satisfaction and mergeability",
+  "owner": "spec-lapwing",
+  "expected_callback_at": "2026-04-15T00:30:00Z",
   "history": [
     {
       "at": "2026-04-14T22:59:33Z",
@@ -280,6 +280,11 @@ It is the sole persistence mechanism for task state across agent sessions.
     {
       "at": "2026-04-14T23:03:28Z",
       "action": "Builder reported NEEDS_REVIEW with draft PR #10 on branch feat/issue-5-pages-release-readiness; routed to QA",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-14T23:06:03Z",
+      "action": "QA approved PR #10, posted visible review artifacts, and applied qa-approved; routed to Spec for mergeability review",
       "by": "orchestrator-lapwing"
     }
   ]
