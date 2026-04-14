@@ -139,7 +139,6 @@ It is the sole persistence mechanism for task state across agent sessions.
   ]
 }
 ```
-
 ## Task boop-webpage-issue-3 - Add SVG crab states and visual design
 
 ```json
@@ -196,23 +195,42 @@ It is the sole persistence mechanism for task state across agent sessions.
   ]
 }
 ```
-
 ## Task boop-webpage-issue-4 - Add persistence, accessibility, and mobile support
 
 ```json
 {
   "task": "boop-webpage-issue-4",
   "state": "in_progress",
-  "current_action": "Preparing Builder handoff for issue #4 after merge of PR #8",
-  "next_action": "Builder to implement issue #4 on a new feature branch and report back with PR details",
+  "current_action": "Fresh builder retry dispatched after prior failed attempt produced no commits or PR",
+  "next_action": "Await builder-lapwing callback with draft PR or blocker for issue #4",
   "owner": "builder-lapwing",
   "branch": null,
   "pr": null,
-  "expected_callback_at": "2026-04-13T23:15:00Z",
+  "expected_callback_at": "2026-04-14T23:20:00Z",
   "history": [
     {
       "at": "2026-04-13T22:03:00Z",
       "action": "Selected issue #4 as the next ready-for-build slice after merging PR #8",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-14T22:22:00Z",
+      "action": "Reset task to in_progress to unblock it after the erroneous watchdog blocked status.",
+      "by": "Sable"
+    },
+    {
+      "at": "2026-04-14T22:35:00Z",
+      "action": "Reset task back to the status it was before it was blocked in order to retest the cron trigger properly.",
+      "by": "Patrick"
+    },
+    {
+      "at": "2026-04-14T22:38:53Z",
+      "action": "Watchdog classified task as stalled, sent named-agent nudge, and extended expected callback by 30 minutes",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-14T22:42:18Z",
+      "action": "Builder callback reported FAILED with no visible implementation artifacts; re-dispatched Builder for a clean retry from current main",
       "by": "orchestrator-lapwing"
     }
   ]
