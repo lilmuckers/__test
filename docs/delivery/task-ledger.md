@@ -206,7 +206,7 @@ It is the sole persistence mechanism for task state across agent sessions.
   "owner": "builder-lapwing",
   "branch": null,
   "pr": null,
-  "expected_callback_at": "null",
+  "expected_callback_at": null,
   "history": [
     {
       "at": "2026-04-13T22:03:00Z",
