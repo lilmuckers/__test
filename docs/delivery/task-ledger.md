@@ -200,13 +200,13 @@ It is the sole persistence mechanism for task state across agent sessions.
 ```json
 {
   "task": "boop-webpage-issue-4",
-  "state": "in_progress",
-  "current_action": "Fresh builder retry dispatched after prior failed attempt produced no commits or PR",
-  "next_action": "Await builder-lapwing callback with draft PR or blocker for issue #4",
+  "state": "blocked",
+  "current_action": "Builder reported a second failed attempt with no commits, PR, or visible GitHub progress for issue #4",
+  "next_action": "Human/operator intervention needed before another Builder pass; inspect builder-lapwing workspace/session failure mode",
   "owner": "builder-lapwing",
   "branch": null,
   "pr": null,
-  "expected_callback_at": "2026-04-14T23:20:00Z",
+  "expected_callback_at": "null",
   "history": [
     {
       "at": "2026-04-13T22:03:00Z",
@@ -231,6 +231,11 @@ It is the sole persistence mechanism for task state across agent sessions.
     {
       "at": "2026-04-14T22:42:18Z",
       "action": "Builder callback reported FAILED with no visible implementation artifacts; re-dispatched Builder for a clean retry from current main",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-14T22:44:03Z",
+      "action": "Second Builder callback reported FAILED with no visible implementation artifacts; task escalated to blocked to avoid blind redispatch loops",
       "by": "orchestrator-lapwing"
     }
   ]
