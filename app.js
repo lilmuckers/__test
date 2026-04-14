@@ -4,6 +4,10 @@ const deBoopButton = document.getElementById('deboop-button');
 const crabStage = document.getElementById('crab-stage');
 const crabStageTitle = document.getElementById('crab-stage-title');
 const crabStageDescription = document.getElementById('crab-stage-description');
+const countSummary = document.getElementById('count-summary');
+const moodAnnouncement = document.getElementById('mood-announcement');
+
+const storageKey = 'boop-crab-state';
 
 let count = 0;
 let lastAction = null;
@@ -43,26 +47,66 @@ const getMood = () => {
   return 'neutral';
 };
 
+const persistState = () => {
+  const state = {
+    count,
+    lastAction,
+  };
+
+  window.localStorage.setItem(storageKey, JSON.stringify(state));
+};
+
+const hydrateState = () => {
+  const rawState = window.localStorage.getItem(storageKey);
+
+  if (!rawState) {
+    return;
+  }
+
+  try {
+    const parsedState = JSON.parse(rawState);
+    const nextCount = Number(parsedState.count);
+    const nextLastAction = parsedState.lastAction;
+
+    if (Number.isFinite(nextCount)) {
+      count = nextCount;
+    }
+
+    if (nextLastAction === 'boop' || nextLastAction === 'deboop' || nextLastAction === null) {
+      lastAction = nextLastAction;
+    }
+  } catch (error) {
+    window.localStorage.removeItem(storageKey);
+  }
+};
+
 const render = () => {
   const mood = getMood();
   const content = moodContent[mood];
 
   countElement.textContent = String(count);
+  countSummary.textContent = `Current boop count: ${count}.`;
   crabStage.dataset.mood = mood;
+  crabStage.setAttribute('aria-label', `${content.title}. ${content.description}`);
   crabStageTitle.textContent = content.title;
   crabStageDescription.textContent = content.description;
+  moodAnnouncement.textContent = `${content.title}. ${content.description}`;
+};
+
+const updateState = (nextCount, nextAction) => {
+  count = nextCount;
+  lastAction = nextAction;
+  persistState();
+  render();
 };
 
 boopButton.addEventListener('click', () => {
-  count += 1;
-  lastAction = 'boop';
-  render();
+  updateState(count + 1, 'boop');
 });
 
 deBoopButton.addEventListener('click', () => {
-  count -= 1;
-  lastAction = 'deboop';
-  render();
+  updateState(count - 1, 'deboop');
 });
 
+hydrateState();
 render();

@@ -1,6 +1,6 @@
 # lapwing
 
-A tiny static boop app that currently implements the core shell, counter interactions, and SVG crab state visuals.
+A tiny static boop app that currently implements the core shell, counter interactions, SVG crab state visuals, local persistence, accessibility semantics, and a tighter mobile layout.
 
 ## Build
 
@@ -22,8 +22,12 @@ Then open `http://127.0.0.1:4173/` in a browser.
 2. Confirm the fresh first-load zero state shows the neutral crab.
 3. Press `Boop` and confirm the displayed count increases by exactly 1 and the crab changes to an excited state.
 4. Press `De-boop` while the count remains non-negative and confirm the displayed count decreases by exactly 1 and the crab changes to a sad state.
-5. Press `De-boop` until the count becomes negative and confirm the crab changes to the skeletal scythe-holding death form.
-6. Confirm the browser tab title is `Boop Crab Counter`.
+5. Reload the page and confirm the boop count and the same visible crab mood are restored from local storage.
+6. Confirm a fresh first visit with cleared local storage restores a neutral crab at count `0`.
+7. Press `De-boop` until the count becomes negative, reload, and confirm the skeletal scythe-holding death form returns immediately.
+8. Confirm the count summary and crab-state meaning are announced to assistive technology through the visible semantic copy and live regions.
+9. Confirm the layout stays usable at an iPhone X sized viewport and on desktop.
+10. Confirm the browser tab title is `Boop Crab Counter`.
 
 ## Specification
 
