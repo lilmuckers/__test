@@ -9,19 +9,20 @@
   <body>
     <main class="app-shell">
       <section class="panel" aria-labelledby="app-title">
-        <p class="eyebrow">Issue #3 delivery slice</p>
+        <p class="eyebrow">Issue #4 delivery slice</p>
         <h1 id="app-title">Boop Crab Counter</h1>
         <p class="supporting-copy">
           The crab now reacts to every boop, de-boop, and catastrophic negative spiral.
         </p>
 
-        <figure class="crab-card">
+        <figure class="crab-card" aria-labelledby="crab-stage-title crab-stage-description">
           <div
             id="crab-stage"
             class="crab-stage"
             data-mood="neutral"
             role="img"
             aria-labelledby="crab-stage-title crab-stage-description"
+            aria-describedby="count-summary mood-announcement"
           >
             <svg
               id="crab-svg"
@@ -153,12 +154,27 @@
           </figcaption>
         </figure>
 
-        <div class="count-card">
-          <span class="count-label">Boops</span>
-          <output id="boop-count" class="count-value" aria-live="polite">0</output>
+        <div class="count-card" aria-labelledby="count-label">
+          <span id="count-label" class="count-label">Boops</span>
+          <output
+            id="boop-count"
+            class="count-value"
+            aria-live="polite"
+            aria-atomic="true"
+            aria-describedby="count-summary"
+          >
+            0
+          </output>
+          <p id="count-summary" class="assistive-copy" aria-live="polite" aria-atomic="true">
+            Current boop count: 0.
+          </p>
         </div>
 
-        <div class="button-row">
+        <p id="mood-announcement" class="assistive-copy" role="status" aria-live="polite" aria-atomic="true">
+          Neutral crab. Fresh zero state, waiting for the next button press.
+        </p>
+
+        <div class="button-row" aria-label="Boop controls">
           <button id="boop-button" class="action-button action-button-primary" type="button">
             Boop
           </button>
