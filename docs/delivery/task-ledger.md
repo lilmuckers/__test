@@ -266,15 +266,20 @@ It is the sole persistence mechanism for task state across agent sessions.
 ```json
 {
   "task": "boop-webpage-issue-5",
-  "state": "in_progress",
-  "current_action": "Selected issue #5 as the next ready-for-build slice after merging PR #9",
-  "next_action": "Await builder-lapwing callback with draft PR or blocker for issue #5",
-  "owner": "builder-lapwing",
+  "state": "needs_review",
+  "current_action": "Builder delivered draft PR #10 for issue #5; QA review queued",
+  "next_action": "Await qa-lapwing callback on PR #10 review",
+  "owner": "qa-lapwing",
   "expected_callback_at": "2026-04-15T00:35:00Z",
   "history": [
     {
       "at": "2026-04-14T22:59:33Z",
       "action": "Issue #5 validated ready and dispatched to Builder as the next slice after issue #4",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-14T23:03:28Z",
+      "action": "Builder reported NEEDS_REVIEW with draft PR #10 on branch feat/issue-5-pages-release-readiness; routed to QA",
       "by": "orchestrator-lapwing"
     }
   ]
