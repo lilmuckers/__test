@@ -340,12 +340,12 @@ It is the sole persistence mechanism for task state across agent sessions.
 {
   "task": "boop-webpage-issue-11",
   "state": "needs_review",
-  "current_action": "Builder reported draft PR #12 on branch feat/issue-11-fix-crab-face-overlap and the task is routed to QA",
-  "next_action": "Wait for QA callback on PR #12, then route to Spec if QA approves",
-  "owner": "qa-lapwing",
+  "current_action": "QA approved PR #12 and the task is routed to Spec for mergeability review",
+  "next_action": "Wait for Spec callback on PR #12, then apply orchestrator approval if the remaining gates are satisfied",
+  "owner": "spec-lapwing",
   "branch": "feat/issue-11-fix-crab-face-overlap",
   "pr": "https://github.com/lilmuckers/__test/pull/12",
-  "expected_callback_at": "2026-04-15T12:20:51Z",
+  "expected_callback_at": "2026-04-15T12:24:53Z",
   "history": [
     {
       "at": "2026-04-15T06:50:00Z",
@@ -366,6 +366,11 @@ It is the sole persistence mechanism for task state across agent sessions.
       "at": "2026-04-15T11:50:51Z",
       "action": "Builder reported NEEDS_REVIEW with draft PR #12 on branch feat/issue-11-fix-crab-face-overlap and no blocking issues",
       "by": "builder-lapwing"
+    },
+    {
+      "at": "2026-04-15T11:54:53Z",
+      "action": "QA approved PR #12, posted visible review artifacts, and applied qa-approved",
+      "by": "qa-lapwing"
     }
   ]
 }
