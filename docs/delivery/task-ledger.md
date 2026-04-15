@@ -428,18 +428,23 @@ It is the sole persistence mechanism for task state across agent sessions.
 ```json
 {
   "task": "boop-webpage-issue-13",
-  "state": "in_progress",
-  "current_action": "Issue #13 validated ready and was dispatched to builder-lapwing for implementation",
-  "next_action": "Wait for Builder callback with branch and draft PR details, then route to QA",
-  "owner": "builder-lapwing",
-  "branch": null,
-  "pr": null,
-  "expected_callback_at": "2026-04-15T12:43:13Z",
+  "state": "needs_review",
+  "current_action": "Builder reported draft PR #15 on branch feat/issue-13-crab-progression-comic-layout and the task is routed to QA",
+  "next_action": "Wait for QA callback on PR #15, then route to Spec if QA approves",
+  "owner": "qa-lapwing",
+  "branch": "feat/issue-13-crab-progression-comic-layout",
+  "pr": "https://github.com/lilmuckers/__test/pull/15",
+  "expected_callback_at": "2026-04-15T12:53:02Z",
   "history": [
     {
       "at": "2026-04-15T12:13:13Z",
       "action": "Validated issue #13 as ready for build, confirmed no open implementation PR exists for it, and dispatched the implementation packet to builder-lapwing",
       "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-15T12:23:02Z",
+      "action": "Builder reported NEEDS_REVIEW with draft PR #15 on branch feat/issue-13-crab-progression-comic-layout and no blocking issues",
+      "by": "builder-lapwing"
     }
   ]
 }
