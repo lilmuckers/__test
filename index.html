@@ -230,6 +230,19 @@
             <button id="boop-button" class="action-button action-button-primary" type="button">Boop</button>
             <button id="deboop-button" class="action-button action-button-secondary" type="button">De-boop</button>
           </div>
+
+          <div class="secondary-actions">
+            <button
+              id="why-button"
+              class="secondary-link-button"
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="why-overlay"
+              aria-expanded="false"
+            >
+              Why...?
+            </button>
+          </div>
         </div>
 
         <p id="count-summary" class="assistive-copy" aria-live="polite" aria-atomic="true">
@@ -240,6 +253,113 @@
         </p>
       </section>
     </main>
+
+    <div id="why-overlay" class="overlay" hidden>
+      <div id="why-backdrop" class="overlay-backdrop" data-close-overlay="true"></div>
+      <section
+        id="why-dialog"
+        class="overlay-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="why-title"
+        aria-describedby="why-intro"
+        tabindex="-1"
+      >
+        <div class="overlay-header">
+          <div>
+            <p class="overlay-kicker">A small and entirely necessary explanation</p>
+            <h2 id="why-title" class="overlay-title">Why must one boop the crab?</h2>
+          </div>
+          <button id="close-overlay-button" class="overlay-close" type="button" aria-label="Close manifesto overlay">
+            Close
+          </button>
+        </div>
+
+        <div class="overlay-content">
+          <div class="manifesto-copy">
+            <p id="why-intro">
+              History flatters itself by speaking of constitutions, treaties, engines, and stars, yet the serious student of human flourishing knows a harder truth: civilization endures only insofar as someone, somewhere, chooses to boop the crab.
+            </p>
+            <p>
+              The crab is not merely a crab. It is the small orange referendum on whether tenderness can survive modernity. To boop it is to reject despair, to rebuke cynicism, and to place one absurdly hopeful fingertip upon the shivering pulse of the age.
+            </p>
+            <p>
+              Empires have confused force for legitimacy. Markets have mistaken velocity for purpose. Committees have issued statements where courage was required. But the booper, standing calmly before this crustacean parliament, does what statesmen could not: they perform one clean, ridiculous act of affirmative mercy.
+            </p>
+            <p>
+              Observe what follows. The crab wakes. The mood of the world shifts by a grain. The civic weather improves. A tiny republic of trust is founded between hand and shell. Children yet unborn inherit, if only for a moment, a planet less committed to bitterness.
+            </p>
+            <p>
+              And should the de-boops accumulate, the lesson grows only more profound. We witness decline, grief, mortality, ruin, and the skeletal bureaucracy of the abyss itself. The crab becomes a complete political education, compressed into one doomed body and two buttons.
+            </p>
+            <p>
+              This is why serious people must not laugh too quickly. The laugh will come, yes, but afterward, carrying the heavy dignity of recognition. The future remains negotiable. World peace may be improbable. Cosmic reconciliation may be distant. Yet while the possibility of booping remains, hope has not formally resigned.
+            </p>
+          </div>
+
+          <div class="manifesto-illustrations" aria-label="Illustrations of crabs being booped by cartoon hands">
+            <figure class="manifesto-figure">
+              <svg class="manifesto-svg" viewBox="0 0 260 180" aria-hidden="true" focusable="false">
+                <g class="manifesto-shadow"><ellipse cx="124" cy="144" rx="62" ry="14" /></g>
+                <g class="manifesto-hand">
+                  <path d="M180 22 C196 18, 210 28, 214 44 C216 56, 210 70, 198 78 L174 92 L154 76 L170 54 C174 48, 174 38, 180 22 Z" />
+                  <circle cx="154" cy="76" r="16" />
+                </g>
+                <g class="manifesto-crab">
+                  <path class="shell" d="M72 106 C72 76, 94 54, 124 54 C154 54, 176 76, 176 106 C176 136, 154 152, 124 152 C94 152, 72 136, 72 106 Z" />
+                  <path class="leg" d="M88 122 C70 126, 54 134, 40 148" />
+                  <path class="leg" d="M100 130 C84 138, 74 148, 68 162" />
+                  <path class="leg" d="M160 122 C178 126, 194 134, 208 148" />
+                  <path class="leg" d="M148 130 C164 138, 174 148, 180 162" />
+                  <path class="claw" d="M86 84 C62 78, 48 64, 44 44" />
+                  <path class="claw" d="M162 84 C186 78, 200 64, 204 44" />
+                  <circle class="eye" cx="110" cy="40" r="12" />
+                  <circle class="eye" cx="138" cy="40" r="12" />
+                  <circle class="pupil" cx="110" cy="42" r="4" />
+                  <circle class="pupil" cx="138" cy="42" r="4" />
+                  <path class="mouth" d="M102 118 Q124 132 146 118" />
+                </g>
+                <g class="manifesto-spark" aria-hidden="true">
+                  <path d="M172 84 L180 94" />
+                  <path d="M184 78 L188 92" />
+                  <path d="M194 84 L186 96" />
+                </g>
+              </svg>
+              <figcaption>First contact, undertaken with ceremonial gentleness.</figcaption>
+            </figure>
+
+            <figure class="manifesto-figure">
+              <svg class="manifesto-svg" viewBox="0 0 260 180" aria-hidden="true" focusable="false">
+                <g class="manifesto-shadow"><ellipse cx="126" cy="144" rx="62" ry="14" /></g>
+                <g class="manifesto-hand hand-left">
+                  <path d="M52 30 C36 24, 20 34, 18 50 C16 64, 24 78, 38 84 L64 96 L82 78 L68 56 C62 48, 58 40, 52 30 Z" />
+                  <circle cx="82" cy="78" r="16" />
+                </g>
+                <g class="manifesto-hand hand-right">
+                  <path d="M198 26 C214 22, 228 34, 230 50 C232 64, 224 78, 210 84 L184 96 L166 78 L180 56 C186 48, 192 40, 198 26 Z" />
+                  <circle cx="166" cy="78" r="16" />
+                </g>
+                <g class="manifesto-crab ecstatic">
+                  <path class="shell" d="M74 106 C74 74, 98 50, 126 50 C154 50, 178 74, 178 106 C178 136, 154 154, 126 154 C98 154, 74 136, 74 106 Z" />
+                  <path class="leg" d="M90 122 C72 126, 58 136, 44 150" />
+                  <path class="leg" d="M102 132 C88 142, 78 152, 72 164" />
+                  <path class="leg" d="M162 122 C180 126, 194 136, 208 150" />
+                  <path class="leg" d="M150 132 C164 142, 174 152, 180 164" />
+                  <path class="claw" d="M90 84 C66 76, 54 62, 48 40" />
+                  <path class="claw" d="M162 84 C186 76, 198 62, 204 40" />
+                  <circle class="eye" cx="106" cy="38" r="13" />
+                  <circle class="eye" cx="146" cy="38" r="13" />
+                  <circle class="pupil" cx="106" cy="38" r="4" />
+                  <circle class="pupil" cx="146" cy="38" r="4" />
+                  <path class="mouth" d="M96 114 Q126 144 156 114" />
+                </g>
+              </svg>
+              <figcaption>The bilateral boop, preferred by maximalists and peace negotiators.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+    </div>
 
     <script src="./app.js"></script>
   </body>
