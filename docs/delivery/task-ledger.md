@@ -429,12 +429,12 @@ It is the sole persistence mechanism for task state across agent sessions.
 {
   "task": "boop-webpage-issue-13",
   "state": "needs_review",
-  "current_action": "Builder reported draft PR #15 on branch feat/issue-13-crab-progression-comic-layout and the task is routed to QA",
-  "next_action": "Wait for QA callback on PR #15, then route to Spec if QA approves",
-  "owner": "qa-lapwing",
+  "current_action": "QA approved PR #15 and the task is routed to Spec for mergeability review",
+  "next_action": "Wait for Spec callback on PR #15, then apply orchestrator approval if the remaining gates are satisfied",
+  "owner": "spec-lapwing",
   "branch": "feat/issue-13-crab-progression-comic-layout",
   "pr": "https://github.com/lilmuckers/__test/pull/15",
-  "expected_callback_at": "2026-04-15T12:53:02Z",
+  "expected_callback_at": "2026-04-15T13:02:58Z",
   "history": [
     {
       "at": "2026-04-15T12:13:13Z",
@@ -445,6 +445,11 @@ It is the sole persistence mechanism for task state across agent sessions.
       "at": "2026-04-15T12:23:02Z",
       "action": "Builder reported NEEDS_REVIEW with draft PR #15 on branch feat/issue-13-crab-progression-comic-layout and no blocking issues",
       "by": "builder-lapwing"
+    },
+    {
+      "at": "2026-04-15T12:32:58Z",
+      "action": "QA approved PR #15, posted visible review artifacts, and applied qa-approved",
+      "by": "qa-lapwing"
     }
   ]
 }
