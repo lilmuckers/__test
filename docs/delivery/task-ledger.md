@@ -339,9 +339,9 @@ It is the sole persistence mechanism for task state across agent sessions.
 ```json
 {
   "task": "boop-webpage-issue-11",
-  "state": "needs_review",
-  "current_action": "Spec approved PR #12 in project context and Orchestrator is executing the final merge gates",
-  "next_action": "Apply orchestrator approval, move PR #12 out of draft, merge it, and close issue #11 after a live Pages spot-check",
+  "state": "done",
+  "current_action": "PR #12 merged as 3c65996 and issue #11 is closed",
+  "next_action": "Monitor the live Pages deployment only if a fresh regression is reported",
   "owner": "orchestrator-lapwing",
   "branch": "feat/issue-11-fix-crab-face-overlap",
   "pr": "https://github.com/lilmuckers/__test/pull/12",
@@ -376,6 +376,16 @@ It is the sole persistence mechanism for task state across agent sessions.
       "at": "2026-04-15T11:57:38Z",
       "action": "Spec marked PR #12 as SPEC_SATISFIED and confirmed it is mergeable in project context once the draft flag is cleared",
       "by": "spec-lapwing"
+    },
+    {
+      "at": "2026-04-15T11:58:32Z",
+      "action": "Applied orchestrator-approved, moved PR #12 out of draft, confirmed Merge Gate success, and merged PR #12 as 3c65996d3e8b507122fdb1d57f7c60b93fccb02f",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-15T11:58:35Z",
+      "action": "Verified the post-merge Deploy GitHub Pages workflow succeeded and issue #11 was closed",
+      "by": "orchestrator-lapwing"
     }
   ]
 }
