@@ -396,17 +396,27 @@ It is the sole persistence mechanism for task state across agent sessions.
 ```json
 {
   "task": "boop-webpage-spec-issues-13-14-readiness",
-  "state": "in_progress",
-  "current_action": "Spec is updating issues #13 and #14 so their visible state matches the real build readiness",
-  "next_action": "Wait for Spec callback, then re-run readiness validation and decide whether issue #13 can be dispatched to Builder",
-  "owner": "spec-lapwing",
+  "state": "done",
+  "current_action": "Spec corrected the visible issue states; issue #13 now validates as ready for build and issue #14 is explicitly blocked on #13",
+  "next_action": "Dispatch issue #13 to Builder when approved by the operator or normal flow",
+  "owner": "orchestrator-lapwing",
   "branch": null,
   "pr": null,
-  "expected_callback_at": "2026-04-15T12:33:24Z",
+  "expected_callback_at": null,
   "history": [
     {
       "at": "2026-04-15T12:03:24Z",
       "action": "Dispatched Spec to repair issues #13 and #14 after both failed readiness validation due to non-empty Dependencies / Blockers sections",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-15T12:05:00Z",
+      "action": "Spec rewrote issue #13 so it truthfully passes readiness validation and changed issue #14 to blocked because it depends on #13",
+      "by": "spec-lapwing"
+    },
+    {
+      "at": "2026-04-15T12:05:00Z",
+      "action": "Re-validated issue #13 as ready for build and confirmed issue #14 is not ready because open blocker #13 remains",
       "by": "orchestrator-lapwing"
     }
   ]
