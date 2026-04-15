@@ -390,3 +390,25 @@ It is the sole persistence mechanism for task state across agent sessions.
   ]
 }
 ```
+
+## Task boop-webpage-spec-issues-13-14-readiness - Refine issue readiness for the next feature slices
+
+```json
+{
+  "task": "boop-webpage-spec-issues-13-14-readiness",
+  "state": "in_progress",
+  "current_action": "Spec is updating issues #13 and #14 so their visible state matches the real build readiness",
+  "next_action": "Wait for Spec callback, then re-run readiness validation and decide whether issue #13 can be dispatched to Builder",
+  "owner": "spec-lapwing",
+  "branch": null,
+  "pr": null,
+  "expected_callback_at": "2026-04-15T12:33:24Z",
+  "history": [
+    {
+      "at": "2026-04-15T12:03:24Z",
+      "action": "Dispatched Spec to repair issues #13 and #14 after both failed readiness validation due to non-empty Dependencies / Blockers sections",
+      "by": "orchestrator-lapwing"
+    }
+  ]
+}
+```
