@@ -206,7 +206,7 @@ It is the sole persistence mechanism for task state across agent sessions.
   "owner": "orchestrator-lapwing",
   "branch": null,
   "pr": null,
-  "expected_callback_at": "2026-04-15T00:10:00Z",
+  "expected_callback_at": null,
   "history": [
     {
       "at": "2026-04-13T22:03:00Z",
@@ -257,6 +257,11 @@ It is the sole persistence mechanism for task state across agent sessions.
       "at": "2026-04-14T22:59:33Z",
       "action": "Merged PR #9, synced repo to 1442cbe, and confirmed issue #4 closed",
       "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-15T07:49:00Z",
+      "action": "Watchdog accepted implicit completion after confirming PR #9 merged and issue #4 closed; cleared stale expected callback",
+      "by": "orchestrator-lapwing"
     }
   ]
 }
@@ -270,7 +275,7 @@ It is the sole persistence mechanism for task state across agent sessions.
   "current_action": "PR #10 merged as ab6cfab and issue #5 closed; post-merge Pages deployment failed because GitHub Pages is not enabled for the repository",
   "next_action": "Surface Pages enablement blocker and continue release tracking via issue #6",
   "owner": "orchestrator-lapwing",
-  "expected_callback_at": "2026-04-15T00:20:00Z",
+  "expected_callback_at": null,
   "history": [
     {
       "at": "2026-04-14T22:59:33Z",
@@ -295,6 +300,11 @@ It is the sole persistence mechanism for task state across agent sessions.
     {
       "at": "2026-04-14T23:09:02Z",
       "action": "Merged PR #10, synced repo to ab6cfab, and found Deploy GitHub Pages workflow blocked by repository Pages not being enabled",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-15T07:49:00Z",
+      "action": "Watchdog accepted implicit completion after confirming PR #10 merged and issue #5 closed; cleared stale expected callback",
       "by": "orchestrator-lapwing"
     }
   ]
@@ -329,13 +339,13 @@ It is the sole persistence mechanism for task state across agent sessions.
 ```json
 {
   "task": "boop-webpage-issue-11",
-  "state": "queued",
-  "current_action": "Bug reproduced in the released app and captured as GitHub issue #11",
-  "next_action": "Route issue #11 to Builder once the named builder session is reachable on this surface",
-  "owner": "orchestrator-lapwing",
+  "state": "in_progress",
+  "current_action": "Issue #11 validated ready and was dispatched to builder-lapwing for implementation",
+  "next_action": "Wait for Builder callback with branch and draft PR details, then route to QA",
+  "owner": "builder-lapwing",
   "branch": null,
   "pr": null,
-  "expected_callback_at": null,
+  "expected_callback_at": "2026-04-15T12:18:07Z",
   "history": [
     {
       "at": "2026-04-15T06:50:00Z",
@@ -345,6 +355,11 @@ It is the sole persistence mechanism for task state across agent sessions.
     {
       "at": "2026-04-15T06:50:00Z",
       "action": "Created bug issue #11 with ready-for-build acceptance criteria and test strategy",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-15T11:48:07Z",
+      "action": "Validated issue #11 as ready for build and dispatched the implementation packet to builder-lapwing",
       "by": "orchestrator-lapwing"
     }
   ]
