@@ -430,7 +430,7 @@ It is the sole persistence mechanism for task state across agent sessions.
   "task": "boop-webpage-issue-13",
   "state": "done",
   "current_action": "PR #15 merged as 7205c22 and issue #13 is closed",
-  "next_action": "Reassess issue #14 now that its blocker is resolved and decide whether to route it next",
+  "next_action": "Issue #14 has been unblocked and dispatched as the next slice",
   "owner": "orchestrator-lapwing",
   "branch": "feat/issue-13-crab-progression-comic-layout",
   "pr": "https://github.com/lilmuckers/__test/pull/15",
@@ -464,6 +464,28 @@ It is the sole persistence mechanism for task state across agent sessions.
     {
       "at": "2026-04-15T12:36:18Z",
       "action": "Verified the post-merge Deploy GitHub Pages workflow succeeded, confirmed the live Pages title updated to 'Boop the Crab!', and issue #13 was closed",
+      "by": "orchestrator-lapwing"
+    }
+  ]
+}
+```
+
+## Task boop-webpage-issue-14 - Add the Why...? manifesto overlay
+
+```json
+{
+  "task": "boop-webpage-issue-14",
+  "state": "in_progress",
+  "current_action": "Issue #14 validated ready, the stale blocked label was removed, and the task was dispatched to builder-lapwing",
+  "next_action": "Wait for Builder callback with branch and draft PR details, then route to QA",
+  "owner": "builder-lapwing",
+  "branch": null,
+  "pr": null,
+  "expected_callback_at": "2026-04-15T13:26:37Z",
+  "history": [
+    {
+      "at": "2026-04-15T12:56:37Z",
+      "action": "Re-validated issue #14 after issue #13 merged, removed the stale blocked label, restored ready-for-build, and dispatched the implementation packet to builder-lapwing",
       "by": "orchestrator-lapwing"
     }
   ]
