@@ -475,18 +475,23 @@ It is the sole persistence mechanism for task state across agent sessions.
 ```json
 {
   "task": "boop-webpage-issue-14",
-  "state": "in_progress",
-  "current_action": "Issue #14 validated ready, the stale blocked label was removed, and the task was dispatched to builder-lapwing",
-  "next_action": "Wait for Builder callback with branch and draft PR details, then route to QA",
-  "owner": "builder-lapwing",
-  "branch": null,
-  "pr": null,
-  "expected_callback_at": "2026-04-15T13:26:37Z",
+  "state": "needs_review",
+  "current_action": "Builder reported draft PR #16 on branch feat/issue-14-why-manifesto-overlay and the task is routed to QA",
+  "next_action": "Wait for QA callback on PR #16, then route to Spec if QA approves",
+  "owner": "qa-lapwing",
+  "branch": "feat/issue-14-why-manifesto-overlay",
+  "pr": "https://github.com/lilmuckers/__test/pull/16",
+  "expected_callback_at": "2026-04-15T13:33:25Z",
   "history": [
     {
       "at": "2026-04-15T12:56:37Z",
       "action": "Re-validated issue #14 after issue #13 merged, removed the stale blocked label, restored ready-for-build, and dispatched the implementation packet to builder-lapwing",
       "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-15T13:03:25Z",
+      "action": "Builder reported NEEDS_REVIEW with draft PR #16 on branch feat/issue-14-why-manifesto-overlay and no blocking issues",
+      "by": "builder-lapwing"
     }
   ]
 }
