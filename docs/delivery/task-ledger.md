@@ -476,12 +476,12 @@ It is the sole persistence mechanism for task state across agent sessions.
 {
   "task": "boop-webpage-issue-14",
   "state": "needs_review",
-  "current_action": "Builder reported draft PR #16 on branch feat/issue-14-why-manifesto-overlay and the task is routed to QA",
-  "next_action": "Wait for QA callback on PR #16, then route to Spec if QA approves",
-  "owner": "qa-lapwing",
+  "current_action": "QA approved PR #16 and the task is routed to Spec for mergeability review",
+  "next_action": "Wait for Spec callback on PR #16, then apply orchestrator approval if the remaining gates are satisfied",
+  "owner": "spec-lapwing",
   "branch": "feat/issue-14-why-manifesto-overlay",
   "pr": "https://github.com/lilmuckers/__test/pull/16",
-  "expected_callback_at": "2026-04-15T13:33:25Z",
+  "expected_callback_at": "2026-04-15T13:40:12Z",
   "history": [
     {
       "at": "2026-04-15T12:56:37Z",
@@ -492,6 +492,11 @@ It is the sole persistence mechanism for task state across agent sessions.
       "at": "2026-04-15T13:03:25Z",
       "action": "Builder reported NEEDS_REVIEW with draft PR #16 on branch feat/issue-14-why-manifesto-overlay and no blocking issues",
       "by": "builder-lapwing"
+    },
+    {
+      "at": "2026-04-15T13:10:12Z",
+      "action": "QA approved PR #16, posted visible review artifacts, and applied qa-approved",
+      "by": "qa-lapwing"
     }
   ]
 }
