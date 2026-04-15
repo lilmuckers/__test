@@ -323,3 +323,30 @@ It is the sole persistence mechanism for task state across agent sessions.
   ]
 }
 ```
+
+## Task boop-webpage-issue-11 - Fix crab face overlap when booping and de-booping
+
+```json
+{
+  "task": "boop-webpage-issue-11",
+  "state": "queued",
+  "current_action": "Bug reproduced in the released app and captured as GitHub issue #11",
+  "next_action": "Route issue #11 to Builder once the named builder session is reachable on this surface",
+  "owner": "orchestrator-lapwing",
+  "branch": null,
+  "pr": null,
+  "expected_callback_at": null,
+  "history": [
+    {
+      "at": "2026-04-15T06:50:00Z",
+      "action": "Reproduced the visual overlap bug and identified the likely cause: neutral facial SVG elements remain visible alongside excited/sad states",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-15T06:50:00Z",
+      "action": "Created bug issue #11 with ready-for-build acceptance criteria and test strategy",
+      "by": "orchestrator-lapwing"
+    }
+  ]
+}
+```
