@@ -180,10 +180,12 @@ h1 {
   stroke-width: 8;
 }
 
-.mouth-excited,
-.mouth-sad,
+.neutral-eyes,
 .excited-eyes,
 .sad-eyes,
+.mouth-neutral,
+.mouth-excited,
+.mouth-sad,
 .crab-death {
   display: none;
 }
