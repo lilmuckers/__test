@@ -3,34 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Boop Crab Counter</title>
+    <title>Boop the Crab!</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <main class="app-shell">
-      <section class="panel" aria-labelledby="app-title">
-        <p class="eyebrow">Issue #4 delivery slice</p>
-        <h1 id="app-title">Boop Crab Counter</h1>
-        <p class="supporting-copy">
-          The crab now reacts to every boop, de-boop, and catastrophic negative spiral.
-        </p>
+      <section class="comic-panel" aria-labelledby="app-title">
+        <p class="eyebrow">Issue #13 delivery slice</p>
+        <header class="masthead">
+          <p class="wordmark-kicker">Tiny tragic crustacean comic</p>
+          <h1 id="app-title" class="wordmark">Boop the Crab!</h1>
+        </header>
 
         <figure class="crab-card" aria-labelledby="crab-stage-title crab-stage-description">
           <div
             id="crab-stage"
             class="crab-stage"
-            data-mood="neutral"
+            data-stage="sleeping"
             role="img"
             aria-labelledby="crab-stage-title crab-stage-description"
             aria-describedby="count-summary mood-announcement"
           >
-            <svg
-              id="crab-svg"
-              class="crab-svg"
-              viewBox="0 0 320 240"
-              aria-hidden="true"
-              focusable="false"
-            >
+            <div class="sleep-zs" aria-hidden="true">
+              <span class="sleep-z sleep-z-one">Z</span>
+              <span class="sleep-z sleep-z-two">Z</span>
+              <span class="sleep-z sleep-z-three">Z</span>
+            </div>
+
+            <svg id="crab-svg" class="crab-svg" viewBox="0 0 320 240" aria-hidden="true" focusable="false">
               <defs>
                 <linearGradient id="shellGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stop-color="#fb923c" />
@@ -43,7 +43,7 @@
               </defs>
 
               <g class="shadow-layer" aria-hidden="true">
-                <ellipse cx="160" cy="202" rx="108" ry="20" />
+                <ellipse cx="160" cy="204" rx="108" ry="20" />
               </g>
 
               <g class="crab-live">
@@ -75,7 +75,14 @@
                   <ellipse class="cheek cheek-right" cx="198" cy="136" rx="12" ry="7" />
                 </g>
 
-                <g class="eyes neutral-eyes">
+                <g class="eyes sleeping-eyes">
+                  <path class="eyestalk" d="M138 86 C134 66, 134 52, 138 36" />
+                  <path class="eyestalk" d="M182 86 C186 66, 186 52, 182 36" />
+                  <path class="sleep-lid" d="M126 31 Q138 23 150 31" />
+                  <path class="sleep-lid" d="M170 31 Q182 23 194 31" />
+                </g>
+
+                <g class="eyes perked-eyes">
                   <path class="eyestalk" d="M138 84 C132 62, 132 46, 138 30" />
                   <path class="eyestalk" d="M182 84 C188 62, 188 46, 182 30" />
                   <circle class="eyeball" cx="138" cy="28" r="14" />
@@ -84,7 +91,7 @@
                   <circle class="pupil" cx="182" cy="30" r="5" />
                 </g>
 
-                <g class="eyes excited-eyes">
+                <g class="eyes thrilled-eyes">
                   <path class="eyestalk" d="M138 84 C132 62, 130 46, 132 28" />
                   <path class="eyestalk" d="M182 84 C188 62, 190 46, 188 28" />
                   <circle class="eyeball" cx="132" cy="26" r="15" />
@@ -95,7 +102,18 @@
                   <circle class="sparkle" cx="182" cy="20" r="3" />
                 </g>
 
-                <g class="eyes sad-eyes">
+                <g class="eyes ecstatic-eyes">
+                  <path class="eyestalk" d="M138 84 C130 58, 126 42, 126 20" />
+                  <path class="eyestalk" d="M182 84 C190 58, 194 42, 194 20" />
+                  <circle class="eyeball" cx="126" cy="18" r="16" />
+                  <circle class="eyeball" cx="194" cy="18" r="16" />
+                  <circle class="pupil pupil-wide" cx="126" cy="18" r="5" />
+                  <circle class="pupil pupil-wide" cx="194" cy="18" r="5" />
+                  <circle class="sparkle sparkle-big" cx="118" cy="10" r="4" />
+                  <circle class="sparkle sparkle-big" cx="186" cy="10" r="4" />
+                </g>
+
+                <g class="eyes glum-eyes">
                   <path class="eyestalk" d="M138 84 C132 62, 132 46, 138 30" />
                   <path class="eyestalk" d="M182 84 C188 62, 188 46, 182 30" />
                   <circle class="eyeball" cx="138" cy="28" r="14" />
@@ -106,14 +124,54 @@
                   <circle class="pupil" cx="182" cy="33" r="4" />
                 </g>
 
+                <g class="eyes decay-eyes">
+                  <path class="eyestalk" d="M138 86 C132 64, 132 50, 138 34" />
+                  <path class="eyestalk" d="M182 86 C188 64, 188 50, 182 34" />
+                  <path class="cross-eye" d="M130 20 L146 36 M146 20 L130 36" />
+                  <path class="cross-eye" d="M174 20 L190 36 M190 20 L174 36" />
+                </g>
+
                 <g class="mouths">
-                  <path class="mouth mouth-neutral" d="M132 154 Q160 168 188 154" />
-                  <path class="mouth mouth-excited" d="M126 148 Q160 180 194 148" />
-                  <path class="mouth mouth-sad" d="M130 164 Q160 142 190 164" />
+                  <path class="mouth mouth-sleeping" d="M132 154 Q160 161 188 154" />
+                  <path class="mouth mouth-perked" d="M132 154 Q160 168 188 154" />
+                  <path class="mouth mouth-thrilled" d="M126 148 Q160 180 194 148" />
+                  <path class="mouth mouth-ecstatic" d="M122 144 Q160 188 198 144" />
+                  <path class="mouth mouth-glum" d="M130 164 Q160 142 190 164" />
+                  <path class="mouth mouth-decay" d="M130 168 Q160 152 190 168" />
                 </g>
               </g>
 
-              <g class="crab-death">
+              <g class="crab-dead">
+                <g class="legs left-legs">
+                  <path d="M94 164 C72 170, 52 184, 36 196" />
+                  <path d="M110 174 C86 184, 74 198, 62 214" />
+                  <path d="M126 182 C108 196, 100 208, 96 222" />
+                </g>
+                <g class="legs right-legs">
+                  <path d="M226 164 C248 170, 268 184, 284 196" />
+                  <path d="M210 174 C234 184, 246 198, 258 214" />
+                  <path d="M194 182 C212 196, 220 208, 224 222" />
+                </g>
+                <g class="body">
+                  <path class="shell" d="M92 136 C92 96, 122 68, 160 68 C198 68, 228 96, 228 136 C228 174, 198 194, 160 194 C122 194, 92 174, 92 136 Z" />
+                  <path class="crack" d="M160 74 L150 108 L168 124 L150 150 L162 188" />
+                  <path class="cross-eye" d="M126 110 L146 130 M146 110 L126 130" />
+                  <path class="cross-eye" d="M174 110 L194 130 M194 110 L174 130" />
+                  <path class="mouth mouth-dead-flat" d="M132 164 L188 164" />
+                </g>
+              </g>
+
+              <g class="crab-husk">
+                <g class="shells">
+                  <path class="shell" d="M96 140 C96 102, 124 74, 160 74 C196 74, 224 102, 224 140 C224 174, 196 196, 160 196 C124 196, 96 174, 96 140 Z" />
+                  <path class="shell-ridge" d="M116 122 C136 106, 184 106, 204 122" />
+                  <path class="shell-ridge" d="M112 148 C134 136, 186 136, 208 148" />
+                  <path class="shell-hole" d="M152 124 C156 116, 164 116, 168 124 C166 134, 154 134, 152 124 Z" />
+                  <path class="shell-hole shell-hole-low" d="M142 160 C150 148, 170 148, 178 160 C172 176, 148 176, 142 160 Z" />
+                </g>
+              </g>
+
+              <g class="crab-skeleton">
                 <g class="legs left-legs">
                   <path d="M100 164 C76 170, 56 182, 38 198" />
                   <path d="M112 176 C90 184, 74 196, 60 214" />
@@ -147,41 +205,39 @@
             </svg>
           </div>
           <figcaption class="crab-caption">
-            <span id="crab-stage-title" class="crab-title">Neutral crab</span>
+            <span id="crab-stage-title" class="crab-title">Sleeping crab</span>
             <span id="crab-stage-description" class="crab-description">
-              Fresh zero state, waiting for the next button press.
+              Fresh zero state. The crab is snoozing until the next dramatic boop.
             </span>
           </figcaption>
         </figure>
 
-        <div class="count-card" aria-labelledby="count-label">
-          <span id="count-label" class="count-label">Boops</span>
-          <output
-            id="boop-count"
-            class="count-value"
-            aria-live="polite"
-            aria-atomic="true"
-            aria-describedby="count-summary"
-          >
-            0
-          </output>
-          <p id="count-summary" class="assistive-copy" aria-live="polite" aria-atomic="true">
-            Current boop count: 0.
-          </p>
+        <div class="control-strip">
+          <div class="count-card" aria-labelledby="count-label">
+            <span id="count-label" class="count-label">Boops</span>
+            <output
+              id="boop-count"
+              class="count-value"
+              aria-live="polite"
+              aria-atomic="true"
+              aria-describedby="count-summary"
+            >
+              0
+            </output>
+          </div>
+
+          <div class="button-row" aria-label="Boop controls">
+            <button id="boop-button" class="action-button action-button-primary" type="button">Boop</button>
+            <button id="deboop-button" class="action-button action-button-secondary" type="button">De-boop</button>
+          </div>
         </div>
 
-        <p id="mood-announcement" class="assistive-copy" role="status" aria-live="polite" aria-atomic="true">
-          Neutral crab. Fresh zero state, waiting for the next button press.
+        <p id="count-summary" class="assistive-copy" aria-live="polite" aria-atomic="true">
+          Current boop count: 0.
         </p>
-
-        <div class="button-row" aria-label="Boop controls">
-          <button id="boop-button" class="action-button action-button-primary" type="button">
-            Boop
-          </button>
-          <button id="deboop-button" class="action-button action-button-secondary" type="button">
-            De-boop
-          </button>
-        </div>
+        <p id="mood-announcement" class="assistive-copy" role="status" aria-live="polite" aria-atomic="true">
+          Sleeping crab. Fresh zero state. The crab is snoozing until the next dramatic boop.
+        </p>
       </section>
     </main>
 

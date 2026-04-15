@@ -1,6 +1,6 @@
 # lapwing
 
-A tiny static boop app that currently implements the core shell, counter interactions, SVG crab state visuals, local persistence, accessibility semantics, and a tighter mobile layout.
+A tiny static boop app that now presents a comic-inspired `Boop the Crab!` layout, threshold-driven crab progression, local persistence, accessibility semantics, and GitHub Pages-friendly subpath support.
 
 ## Build
 
@@ -26,19 +26,17 @@ Then open `http://127.0.0.1:4173/` for the root-path check or `http://127.0.0.1:
 
 ## Verify
 
-1. Load the page at `http://127.0.0.1:4173/` and confirm the dark app shell renders with a visible orange SVG crab, the count, and `Boop` / `De-boop` buttons.
+1. Load the page at `http://127.0.0.1:4173/` and confirm the comic-style `Boop the Crab!` layout renders with the wordmark, crab art, count, and `Boop` / `De-boop` buttons.
 2. Start `python3 scripts/serve-pages-subpath.py`, then load `http://127.0.0.1:4173/__test/` and confirm the app still works from the repository-subpath-style URL.
 3. Confirm the stylesheet and script load correctly from both URLs, which verifies the app is using subpath-safe relative asset references.
-4. Confirm the fresh first-load zero state shows the neutral crab.
-5. Press `Boop` and confirm the displayed count increases by exactly 1 and the crab changes to an excited state.
-6. Press `De-boop` while the count remains non-negative and confirm the displayed count decreases by exactly 1 and the crab changes to a sad state.
-7. Reload the page and confirm the boop count and the same visible crab mood are restored from local storage.
-8. Confirm a fresh first visit with cleared local storage restores a neutral crab at count `0`.
-9. Press `De-boop` until the count becomes negative, reload, and confirm the skeletal scythe-holding death form returns immediately.
-10. Confirm the count summary and crab-state meaning are announced to assistive technology through the visible semantic copy and live regions.
-11. Confirm the layout stays usable at an iPhone X sized viewport and on desktop.
-12. After release, verify the live GitHub Pages URL `https://lilmuckers.github.io/__test/` and confirm the published app loads and works there.
-13. Confirm the browser tab title is `Boop Crab Counter`.
+4. Clear local storage and confirm the fresh zero state shows a sleeping crab with animated `Z` cues.
+5. Verify representative positive tiers: `1` shows a perked-up crab, `10` shows a more thrilled crab, `100` shows a more ecstatic crab, and counts above `1000` show the animated jumping-excitement state.
+6. Verify representative negative tiers: `-1` shows a glum crab, `-100` shows a decaying crab, `-300` shows the explicit dead crab state, `-999` shows the empty-shell state, and only counts below `-1000` show the skeletal scythe crab.
+7. Reload the page after representative threshold values and confirm the correct threshold-based crab presentation is restored from local storage.
+8. Confirm the count summary and crab-state meaning are announced to assistive technology through the visible semantic copy and live regions.
+9. Confirm the layout stays usable at an iPhone X sized viewport and on desktop.
+10. After release, verify the live GitHub Pages URL `https://lilmuckers.github.io/__test/` and confirm the published app loads and works there.
+11. Confirm the browser tab title is `Boop the Crab!`.
 
 ## Specification
 
