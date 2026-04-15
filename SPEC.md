@@ -2,160 +2,164 @@
 
 ## Purpose
 
-Define the minimum viable scope for a single-page interactive boop app and act as the in-repo entrypoint into the fuller project definition.
+Define the current project scope for the single-page interactive boop app and act as the in-repo entrypoint into the fuller project definition.
 
 ## Project intent
 
-- Provide the smallest useful user-facing webpage in this repo that still exercises meaningful end-to-end delivery.
-- Give Builder an unambiguous first implementation target with visible interaction, state changes, and presentational character design.
-- Establish a strict spec-first baseline before any implementation PR is opened.
+- Keep the product as a single-page, comic-styled interactive toy.
+- Make the crab substantially more expressive across the full boop range rather than using only a few coarse mood states.
+- Simplify the primary screen so the character art is the star.
+- Add one deliberately absurd secondary overlay that deepens the joke without turning the project into a multi-page app.
 
 ## Scope summary
 
 - In scope:
   - One directly accessible single-page boop app
-  - A dark-background layout with a clearly intentional visual design rather than an unstyled placeholder page
-  - A simple vector-designed crab character rendered in-page as SVG
-  - A visible boop counter
-  - A `Boop` button that increments the counter by 1
-  - A `De-boop` button that decrements the counter by 1
-  - Crab expression/state changes tied directly to boop count state
-  - Local persistence of the boop count using browser local storage
-  - Screen-reader support with a high-contrast accessible presentation, including an orange crab against the dark background
-  - Basic page metadata, including a meaningful document title
-  - Minimal supporting copy only if needed to make the interaction legible
-  - Release readiness that includes a deployable GitHub Pages output for the project repository
+  - A dark-background comic-inspired visual presentation
+  - A prominent wordmark or logo treatment reading `Boop the Crab!`
+  - A large in-page SVG crab illustration as the primary focus of the screen
+  - A visible `Boop` button and a visible `De-boop` button
+  - A small `Why...?` button that opens an in-page overlay or modal
+  - Richer crab-state variance tied directly to the boop count
+  - Bounded, character-led SVG animation for special states such as sleep, high excitement, and related atmospheric cues
+  - Local persistence of the boop count and the minimum state needed for deterministic restoration
+  - Screen-reader support, keyboard accessibility, and high-contrast presentation
+  - GitHub Pages release readiness for the repository subpath deployment target
 - Out of scope / non-goals:
-  - Authentication, APIs, forms, analytics, or routing beyond the single page
-  - Multi-page navigation, user accounts, or back-end services
-  - Audio, physics, complex animation systems, or elaborate game mechanics
-  - SEO, telemetry, cookies, or release automation beyond normal repo checks
+  - Multi-page navigation or route-based information architecture
+  - Backend services, user accounts, analytics, or forms
+  - Audio, physics simulation, or game-like progression systems
+  - Long scrolling content outside the bounded overlay treatment
+  - Unbounded lore expansion beyond the single overlay experience
 
-## User Flows
+## User flows
 
-- A user opens the webpage and immediately sees the crab, the current boop count, and the two primary actions.
-- A user presses `Boop` and sees the count increase by 1 while the crab looks excited.
-- A user presses `De-boop` and sees the count decrease by 1 while the crab looks sad, unless the total has gone negative.
-- A user drives the count below zero and sees the crab transform into a skeletal death-like version holding a scythe.
+- A user opens the webpage and immediately sees the `Boop the Crab!` wordmark, the crab illustration, and the three buttons.
+- A user presses `Boop` repeatedly and sees the crab become progressively more delighted as the count climbs.
+- A user pushes the count above `1000` and sees the crab become animated and visibly jump with excitement.
+- A user lands on a fresh zero state and sees a sleeping crab with animated `Z` markers.
+- A user presses `De-boop` below zero and sees the crab become progressively more distressed, then dead, then rotten, then finally skeletal at the extreme threshold.
+- A user presses `Why...?` and receives a comic, tongue-in-cheek but serious-toned philosophical overlay that can be dismissed without leaving the page.
 
-## Usability Requirements
+## Usability requirements
 
-- The primary interaction area must be visible on initial load without requiring navigation.
-- The page must remain readable on standard desktop and mobile browser viewports.
-- The boop count must always be visually clear and easy to find.
-- Both primary buttons must be clearly labeled, keyboard accessible, and screen-reader accessible.
-- The crab state and current count must be understandable to screen-reader users through appropriate semantic text or labels, not visual presentation alone.
-- The layout and controls must remain usable at mobile touch sizes as well as desktop scales.
-- Mobile support baseline is iPhone X class width and height as the lower-bound target for this first slice.
-- The implementation should avoid unnecessary UI chrome for this first slice.
+- The primary interaction area must remain visible on initial load without requiring navigation.
+- The default screen should stay visually simpler than the current implementation: logo, crab, and controls first.
+- The page must remain readable and operable on standard desktop and mobile browser viewports.
+- Primary buttons must be clearly labeled, keyboard accessible, touch accessible, and screen-reader accessible.
+- The crab state and current boop meaning must be understandable to screen-reader users through semantic text or labels, not visual presentation alone.
+- The overlay must trap neither focus nor scrolling incorrectly, must be dismissible, and must remain readable on mobile.
+- The implementation should avoid unnecessary chrome outside the intentionally theatrical overlay.
 
-## Design Direction
+## Design direction
 
-- Keep the page intentionally minimal, but visibly designed.
-- Use a dark background as a firm product requirement.
-- The crab should be implemented as simple SVG artwork and should be charming rather than highly detailed.
-- The live crab should read clearly as orange against the dark background with strong visual contrast.
-- On first load with a zero count and no prior interaction history, the crab should appear neutral.
-- The emotional state changes should be obvious at a glance and must be derived from boop-count state in a deterministic way that survives reload.
-- Negative total: skeletal death-crab holding a scythe.
-- Visual transitions between crab states may be lightly animated, but should remain simple and non-essential to understanding the state.
-- Styling may be playful, but should stay clean and bounded to this single-screen experience.
+- Keep the dark background as a firm product requirement.
+- Shift the primary screen toward a comic-poster feel: bold title, large character art, minimal surrounding UI.
+- The crab should stay vector-based and stylized rather than realistic.
+- Emotional and physical progression should feel exaggerated and funny, with clear visual milestones across the count range.
+- Zero is no longer neutral. On a fresh zero state the crab is asleep, with animated `Z` cues.
+- Positive counts should escalate from mild delight into extreme celebration rather than flattening into one excited state.
+- Counts above `1000` should feel special and visibly animated, including jumping excitement.
+- Negative counts should degrade progressively from sadness into death, rot, and finally a skeletal scythe-wielding form only after the extreme threshold.
+- The `Why...?` overlay should feel like an intentionally overcommitted comic manifesto in the same visual world, with vector illustrations of crabs being booped by vector hands.
+- Humor should be dry, absurd, and played with a straight face.
 
-## State Model
+## State model
 
 - Counter starts at `0` on first visit when no prior local storage value exists.
 - The current boop count must be stored in browser local storage and restored on reload.
-- The app should persist only the minimum local state needed to restore the same mood on reload as the user last saw for the current count state.
+- The app should persist the minimum local state needed to restore the same deterministic presentation after reload.
 - `Boop` always adds `1`.
 - `De-boop` always subtracts `1`.
-- Mood must remain linked to boop-count state and the latest user interaction so the same visible mood is restored after reload.
-- On first load with no prior interaction history and a zero count, the crab renders neutral.
-- When the current count is below `0`, the crab must render in its skeletal scythe-holding death form regardless of the latest action.
-- When the current count is `0` or greater and the latest action was `Boop`, the crab renders excited.
-- When the current count is `0` or greater and the latest action was `De-boop`, the crab renders sad.
-- On reload, the app must restore the same mood the user last saw for the persisted count rather than recomputing a different non-death default.
+- Fresh zero state renders a sleeping crab rather than a neutral awake crab.
+- Positive counts use multiple increasing excitement tiers rather than a single excited state.
+- Counts above `1000` enter a special animated jumping-excitement presentation.
+- Counts below `0` use multiple worsening distress and decay tiers.
+- Count `-300` is the explicit death threshold.
+- Counts below `-300` should look progressively more rotten.
+- By `-999` the crab should read as effectively an empty shell.
+- Only counts below `-1000` should transition to the skeletal scythe-wielding crab.
+- On reload, the app must restore the correct presentation for the persisted count, including threshold-specific animation and art states where relevant.
 
-## Implementation Direction
+## Implementation direction
 
-- Builder should prefer the lightest viable static-compatible stack that makes GitHub Pages deployment straightforward.
-- The stack should avoid unnecessary framework complexity for this first slice.
-- My current recommendation is a minimal static site implementation using plain HTML, CSS, JavaScript, and inline SVG unless Builder finds a compelling repo-local reason to choose otherwise.
+- Builder should keep the implementation static-site friendly and GitHub Pages compatible.
+- Plain HTML, CSS, JavaScript, and inline SVG remain the preferred baseline unless Builder finds a compelling reason otherwise.
+- Animation should stay lightweight and CSS/SVG-friendly rather than introducing heavyweight runtime dependencies.
+- The simplified primary layout should not remove accessibility semantics just to achieve visual minimalism.
 
-## Delivery Slicing
+## Delivery slicing
 
-The implementation should be delivered through tightly bounded issues rather than one oversized build ticket.
+The next requested evolution should be delivered through tightly bounded issues rather than one oversized ticket.
 
 Planned issue decomposition:
-1. Core app shell and counter interactions
-2. SVG crab states and visual design
-3. Persistence, accessibility, and mobile support
-4. GitHub Pages release readiness and repository-path deployment validation
-5. Release tracking for `v0.1.0`
+1. Evolve the crab state ladder and simplify the primary comic layout
+2. Add the `Why...?` overlay manifesto and illustrated modal treatment
+3. Follow-up polish or bugfix slices as needed after QA review
 
 Expected sequencing:
-- Issue 1 establishes the working app shell and button mechanics.
-- Issue 2 adds the crab artwork and visual state presentations.
-- Issue 3 adds durable state restoration and quality requirements.
-- Issue 4 makes the app release-ready from the repository GitHub Pages subpath.
-- The release-tracking issue coordinates final verification and publication state.
+- The state-ladder/layout issue should land first because it changes the main product definition.
+- The `Why...?` overlay should land second because it depends on the refreshed visual language.
+- Any remaining polish should be split out rather than folded into the main redesign issue.
 
-## Test Strategy
+## Test strategy
 
 - Required test types:
-  - Executable local verification that the page renders and shows the crab, controls, and boop count
-  - Executable local verification that `Boop` increments by 1 and changes the crab to excited
-  - Executable local verification that `De-boop` decrements by 1 and changes the crab to sad when count remains non-negative
-  - Executable local verification that a negative count changes the crab into the skeletal scythe-holding form
-  - Executable local verification that the count persists across reloads via local storage
-  - Executable local verification that the same crab mood is restored on reload for neutral, non-negative, and negative cases
-  - Executable local verification that the page remains usable on an iPhone X baseline viewport and on a standard desktop viewport
-  - Executable local verification that screen-reader-relevant semantics and visible contrast expectations are met
-  - Automated test coverage if the chosen stack has a lightweight default path for interaction testing
-- Tooling:
-  - Use the repo's existing or newly introduced minimal frontend tooling as justified by Builder
+  - Executable local verification that the simplified screen shows the `Boop the Crab!` logo, crab art, and three buttons
+  - Executable verification that fresh zero state renders the sleeping crab with animated `Z` cues
+  - Executable verification that positive counts visibly escalate across multiple excitement tiers
+  - Executable verification that counts above `1000` render the special animated jumping state
+  - Executable verification that negative counts visibly worsen across multiple tiers
+  - Executable verification that count `-300` renders the dead state
+  - Executable verification that count `-999` renders an effectively empty-shell state
+  - Executable verification that counts below `-1000` render the skeletal scythe-wielding state
+  - Executable verification that persisted counts restore the correct tiered presentation after reload
+  - Executable verification that the `Why...?` overlay opens, closes, remains keyboard accessible, and is readable on mobile and desktop
+  - Executable verification that the overlay includes the comic manifesto copy and vector booped-crab imagery
 - Coverage expectations:
   - At minimum, Builder must provide a reproducible verification path in the PR
+  - If the chosen stack has a light automated path for interaction checks, Builder should add regression coverage for threshold transitions or modal open-close behavior where practical
 
-## Acceptance Criteria
+## Acceptance criteria
 
-- A single webpage exists in the repo and is the only user-facing scope introduced for this task.
-- Loading the page shows a dark-background boop app with a visible orange SVG crab character, visible boop count, and both `Boop` and `De-boop` buttons without requiring user interaction.
-- Pressing `Boop` increases the displayed count by exactly 1 and changes the crab to an excited presentation.
-- Pressing `De-boop` decreases the displayed count by exactly 1 and changes the crab to a sad presentation whenever the resulting count is still `0` or greater.
-- If the displayed count becomes negative, the crab changes into a skeletal death-like form holding a scythe.
-- Reloading the page preserves the boop count from browser local storage.
-- Reloading the page restores the same visible mood the user last saw for the persisted state, including immediate death-crab rendering for negative persisted counts and neutral rendering for a fresh zero-state first visit.
-- State changes may use light visual transitions, but the page must remain understandable without relying on animation.
-- The page remains usable and readable on both desktop viewport sizes and an iPhone X baseline mobile viewport.
-- Buttons, count, and crab-state meaning are available to screen readers through appropriate semantic markup or labels.
-- The page uses strong visual contrast, including an orange live crab against the dark background.
-- The page includes a meaningful document title, not an empty or placeholder title.
-- The implementation keeps scope minimal and does not introduce unrelated product surface area.
+- The main page presents a simplified comic-inspired layout with a visible `Boop the Crab!` logo or wordmark, the crab illustration, and the three controls.
+- The primary screen removes non-essential supporting UI chrome while preserving accessibility semantics.
+- A fresh first-load zero state shows a sleeping crab with animated `Z` markers.
+- Positive boop counts visibly progress through more than one excitement tier.
+- Counts above `1000` render a distinct animated jumping-excitement state.
+- Negative counts visibly progress through worsening sadness and decay rather than jumping immediately to the skeletal death form.
+- Count `-300` renders the explicit dead crab state.
+- By `-999` the crab reads as an empty shell or equivalently extreme rotten-remains state.
+- Only counts below `-1000` render the skeletal scythe-wielding crab.
+- Reloading the page preserves the boop count from browser local storage and restores the correct tiered crab presentation for that count.
+- The main controls and crab-state meaning remain available to screen readers through appropriate semantic markup or labels.
+- The `Why...?` button opens an in-page overlay or modal rather than navigating away.
+- The overlay contains a serious-toned but absurd philosophical treatise about the world-historical importance of booping the crab.
+- The overlay includes vector illustrations of crabs being booped by vector hands and remains visually aligned with the main comic-dark theme.
+- The overlay is keyboard accessible, dismissible, and usable on both desktop and mobile viewports.
+- The implementation keeps the project as a single-page experience and does not introduce unrelated product surface area.
 - A reviewer can build, run, and verify the page locally using documented README instructions.
-- The released app is published as the root index page for the `__test` repository GitHub Pages site and works correctly at `https://lilmuckers.github.io/__test/` or equivalent repository-path hosting such as `https://patrick-mckinley.com/__test/`.
-- All app asset and navigation paths required for this single-page experience work correctly as relative paths from the repository GitHub Pages subpath.
-- Once the release is treated as proper/released, release verification must include checking the live GitHub Pages URL and confirming it loads and works.
+- The released app remains compatible with the repository GitHub Pages deployment target and subpath-safe asset loading.
 
 ## Current delivery intent
 
-- Current focus: define a build-ready first slice for a single-page boop app with expressive state changes and a GitHub Pages release target
+- Current focus: spec the next evolution of the boop app around richer character progression, a simpler comic layout, and the `Why...?` overlay.
 - Important constraints:
-  - Spec-first only, no implementation in this phase
-  - Builder must open the implementation PR
-  - Avoid duplicate implementation PRs
-  - Release readiness includes whatever minimal deployment configuration is required for the repository's GitHub Pages location
-  - The release artifact must function from the repository Pages subpath rather than assuming site-root hosting
+  - Keep the product single-page and joke-forward.
+  - Prefer crisp visual thresholds over vague mood interpolation.
+  - Preserve accessibility, persistence, and Pages compatibility while changing the presentation.
+  - Avoid bloating the primary screen with explanatory copy.
 - Success indicators:
-  - Builder receives one clear issue or equivalent visible artifact with bounded scope and testable acceptance criteria
-  - QA can verify all visual state changes without needing hidden implementation knowledge
-  - Release Manager can point to a live GitHub Pages URL as the release artifact and verify it loads correctly
+  - Builder receives bounded issues with explicit thresholds and acceptance criteria.
+  - QA can verify the major visual thresholds without guessing the intended art progression.
+  - The refreshed app feels simpler on first glance but richer in character behavior.
 
 ## Authoritative wiki pages
 
 - Product definition: not yet created
 - Solution design: not yet created
 - Architecture: not yet created
-- Decision records / assumptions: this `SPEC.md` currently carries the minimal project-level assumptions for the first slice
+- Decision records / assumptions: this `SPEC.md` currently carries the active project-level assumptions for the current slice
 
 ## Notes
 
