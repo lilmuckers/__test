@@ -34,9 +34,10 @@ Then open `http://127.0.0.1:4173/` for the root-path check or `http://127.0.0.1:
 6. Verify representative negative tiers: `-1` shows a glum crab, `-100` shows a decaying crab, `-300` shows the explicit dead crab state, `-999` shows the empty-shell state, and only counts below `-1000` show the skeletal scythe crab.
 7. Reload the page after representative threshold values and confirm the correct threshold-based crab presentation is restored from local storage.
 8. Confirm the count summary and crab-state meaning are announced to assistive technology through the visible semantic copy and live regions.
-9. Confirm the layout stays usable at an iPhone X sized viewport and on desktop.
-10. After release, verify the live GitHub Pages URL `https://lilmuckers.github.io/__test/` and confirm the published app loads and works there.
-11. Confirm the browser tab title is `Boop the Crab!`.
+9. Confirm the `Why...?` button opens the in-page manifesto overlay, that the overlay can be dismissed by the close button and `Escape`, and that the manifesto illustrations render correctly.
+10. Confirm the layout stays usable at an iPhone X sized viewport and on desktop, including the overlay.
+11. After release, verify the live GitHub Pages URL `https://lilmuckers.github.io/__test/` and confirm the published app loads and works there.
+12. Confirm the browser tab title is `Boop the Crab!`.
 
 ## Specification
 

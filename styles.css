@@ -201,6 +201,36 @@ body {
   gap: 14px;
 }
 
+.secondary-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.secondary-link-button {
+  appearance: none;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(31, 42, 68, 0.72);
+  color: #cbd5e1;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.secondary-link-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 154, 61, 0.35);
+  background: rgba(39, 51, 82, 0.9);
+}
+
+.secondary-link-button:focus-visible {
+  outline: 3px solid rgba(255, 154, 61, 0.42);
+  outline-offset: 3px;
+}
+
 .action-button {
   appearance: none;
   min-height: 58px;
@@ -240,6 +270,178 @@ body {
   color: var(--muted);
   text-align: center;
   line-height: 1.55;
+}
+
+body.overlay-open {
+  overflow: hidden;
+}
+
+.overlay[hidden] {
+  display: none;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.74);
+  backdrop-filter: blur(6px);
+}
+
+.overlay-panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 920px);
+  max-height: min(90vh, 900px);
+  overflow: auto;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 154, 61, 0.2);
+  background: linear-gradient(180deg, rgba(15, 21, 39, 0.99), rgba(7, 11, 23, 0.97));
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.48);
+  padding: 22px;
+}
+
+.overlay-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.overlay-kicker {
+  margin: 0;
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.overlay-title {
+  margin: 10px 0 0;
+  font-size: clamp(2rem, 6vw, 3.1rem);
+  line-height: 1;
+}
+
+.overlay-close {
+  appearance: none;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(31, 42, 68, 0.86);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 10px 16px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.overlay-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.manifesto-copy {
+  display: grid;
+  gap: 16px;
+}
+
+.manifesto-copy p {
+  margin: 0;
+  color: #dbe4ff;
+  line-height: 1.75;
+}
+
+.manifesto-illustrations {
+  display: grid;
+  gap: 16px;
+}
+
+.manifesto-figure {
+  margin: 0;
+  padding: 14px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 154, 61, 0.16);
+  background: rgba(12, 18, 33, 0.86);
+}
+
+.manifesto-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.manifesto-figure figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.manifesto-shadow ellipse {
+  fill: rgba(2, 6, 23, 0.5);
+}
+
+.manifesto-hand path,
+.manifesto-crab .leg,
+.manifesto-crab .claw,
+.manifesto-crab .mouth,
+.manifesto-spark path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.manifesto-hand path {
+  fill: #f5d0a9;
+  stroke: #f8fafc;
+  stroke-width: 3;
+}
+
+.manifesto-hand circle {
+  fill: #f5d0a9;
+  stroke: #f8fafc;
+  stroke-width: 3;
+}
+
+.manifesto-crab .shell {
+  fill: url(#shellGradient);
+  stroke: #ffedd5;
+  stroke-width: 4;
+}
+
+.manifesto-crab .leg,
+.manifesto-crab .claw {
+  stroke: #fdba74;
+  stroke-width: 8;
+}
+
+.manifesto-crab .eye {
+  fill: #fff7ed;
+  stroke: rgba(15, 23, 42, 0.3);
+  stroke-width: 2;
+}
+
+.manifesto-crab .pupil {
+  fill: #0f172a;
+}
+
+.manifesto-crab .mouth {
+  stroke: #7c2d12;
+  stroke-width: 6;
+}
+
+.manifesto-spark path {
+  stroke: #fde68a;
+  stroke-width: 4;
 }
 
 .shadow-layer ellipse {
@@ -553,6 +755,12 @@ body {
   }
 }
 
+@media (max-width: 720px) {
+  .overlay-content {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 480px) {
   .comic-panel {
     padding: 18px;
@@ -578,5 +786,22 @@ body {
 
   .crab-title {
     font-size: 1.18rem;
+  }
+
+  .overlay {
+    padding: 12px;
+  }
+
+  .overlay-panel {
+    padding: 16px;
+    border-radius: 22px;
+  }
+
+  .overlay-header {
+    flex-direction: column;
+  }
+
+  .overlay-close {
+    width: 100%;
   }
 }
