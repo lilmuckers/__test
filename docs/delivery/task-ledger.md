@@ -476,12 +476,12 @@ It is the sole persistence mechanism for task state across agent sessions.
 {
   "task": "boop-webpage-issue-14",
   "state": "needs_review",
-  "current_action": "QA approved PR #16 and the task is routed to Spec for mergeability review",
-  "next_action": "Wait for Spec callback on PR #16, then apply orchestrator approval if the remaining gates are satisfied",
-  "owner": "spec-lapwing",
+  "current_action": "Spec approved PR #16 in project context and Orchestrator is executing the final merge gates",
+  "next_action": "Apply orchestrator approval, move PR #16 out of draft, merge it, and verify the live Pages deployment before closing issue #14",
+  "owner": "orchestrator-lapwing",
   "branch": "feat/issue-14-why-manifesto-overlay",
   "pr": "https://github.com/lilmuckers/__test/pull/16",
-  "expected_callback_at": "2026-04-15T13:40:12Z",
+  "expected_callback_at": null,
   "history": [
     {
       "at": "2026-04-15T12:56:37Z",
@@ -497,6 +497,11 @@ It is the sole persistence mechanism for task state across agent sessions.
       "at": "2026-04-15T13:10:12Z",
       "action": "QA approved PR #16, posted visible review artifacts, and applied qa-approved",
       "by": "qa-lapwing"
+    },
+    {
+      "at": "2026-04-15T13:12:31Z",
+      "action": "Spec marked PR #16 as SPEC_SATISFIED and confirmed it is mergeable in project context once the draft flag is cleared",
+      "by": "spec-lapwing"
     }
   ]
 }
