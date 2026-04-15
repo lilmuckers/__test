@@ -475,9 +475,9 @@ It is the sole persistence mechanism for task state across agent sessions.
 ```json
 {
   "task": "boop-webpage-issue-14",
-  "state": "needs_review",
-  "current_action": "Spec approved PR #16 in project context and Orchestrator is executing the final merge gates",
-  "next_action": "Apply orchestrator approval, move PR #16 out of draft, merge it, and verify the live Pages deployment before closing issue #14",
+  "state": "done",
+  "current_action": "PR #16 merged as 3de371c and issue #14 is closed",
+  "next_action": "Capture follow-up polish only if the remaining eyebrow/status-copy clutter should become a new issue",
   "owner": "orchestrator-lapwing",
   "branch": "feat/issue-14-why-manifesto-overlay",
   "pr": "https://github.com/lilmuckers/__test/pull/16",
@@ -502,6 +502,16 @@ It is the sole persistence mechanism for task state across agent sessions.
       "at": "2026-04-15T13:12:31Z",
       "action": "Spec marked PR #16 as SPEC_SATISFIED and confirmed it is mergeable in project context once the draft flag is cleared",
       "by": "spec-lapwing"
+    },
+    {
+      "at": "2026-04-15T13:13:13Z",
+      "action": "Applied orchestrator-approved, moved PR #16 out of draft, confirmed fresh Merge Gate success, and merged PR #16 as 3de371cd2802bd5454a8e54621b52030f6723b9c",
+      "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-15T13:13:16Z",
+      "action": "Verified the post-merge Deploy GitHub Pages workflow succeeded and issue #14 was closed; live Pages health check returned HTTP 200",
+      "by": "orchestrator-lapwing"
     }
   ]
 }
