@@ -339,13 +339,13 @@ It is the sole persistence mechanism for task state across agent sessions.
 ```json
 {
   "task": "boop-webpage-issue-11",
-  "state": "in_progress",
-  "current_action": "Issue #11 validated ready and was dispatched to builder-lapwing for implementation",
-  "next_action": "Wait for Builder callback with branch and draft PR details, then route to QA",
-  "owner": "builder-lapwing",
-  "branch": null,
-  "pr": null,
-  "expected_callback_at": "2026-04-15T12:18:07Z",
+  "state": "needs_review",
+  "current_action": "Builder reported draft PR #12 on branch feat/issue-11-fix-crab-face-overlap and the task is routed to QA",
+  "next_action": "Wait for QA callback on PR #12, then route to Spec if QA approves",
+  "owner": "qa-lapwing",
+  "branch": "feat/issue-11-fix-crab-face-overlap",
+  "pr": "https://github.com/lilmuckers/__test/pull/12",
+  "expected_callback_at": "2026-04-15T12:20:51Z",
   "history": [
     {
       "at": "2026-04-15T06:50:00Z",
@@ -361,6 +361,11 @@ It is the sole persistence mechanism for task state across agent sessions.
       "at": "2026-04-15T11:48:07Z",
       "action": "Validated issue #11 as ready for build and dispatched the implementation packet to builder-lapwing",
       "by": "orchestrator-lapwing"
+    },
+    {
+      "at": "2026-04-15T11:50:51Z",
+      "action": "Builder reported NEEDS_REVIEW with draft PR #12 on branch feat/issue-11-fix-crab-face-overlap and no blocking issues",
+      "by": "builder-lapwing"
     }
   ]
 }
