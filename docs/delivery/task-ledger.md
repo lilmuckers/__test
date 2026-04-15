@@ -398,7 +398,7 @@ It is the sole persistence mechanism for task state across agent sessions.
   "task": "boop-webpage-spec-issues-13-14-readiness",
   "state": "done",
   "current_action": "Spec corrected the visible issue states; issue #13 now validates as ready for build and issue #14 is explicitly blocked on #13",
-  "next_action": "Dispatch issue #13 to Builder when approved by the operator or normal flow",
+  "next_action": "Issue #13 has now been dispatched to Builder",
   "owner": "orchestrator-lapwing",
   "branch": null,
   "pr": null,
@@ -417,6 +417,28 @@ It is the sole persistence mechanism for task state across agent sessions.
     {
       "at": "2026-04-15T12:05:00Z",
       "action": "Re-validated issue #13 as ready for build and confirmed issue #14 is not ready because open blocker #13 remains",
+      "by": "orchestrator-lapwing"
+    }
+  ]
+}
+```
+
+## Task boop-webpage-issue-13 - Evolve crab progression and simplify the main comic layout
+
+```json
+{
+  "task": "boop-webpage-issue-13",
+  "state": "in_progress",
+  "current_action": "Issue #13 validated ready and was dispatched to builder-lapwing for implementation",
+  "next_action": "Wait for Builder callback with branch and draft PR details, then route to QA",
+  "owner": "builder-lapwing",
+  "branch": null,
+  "pr": null,
+  "expected_callback_at": "2026-04-15T12:43:13Z",
+  "history": [
+    {
+      "at": "2026-04-15T12:13:13Z",
+      "action": "Validated issue #13 as ready for build, confirmed no open implementation PR exists for it, and dispatched the implementation packet to builder-lapwing",
       "by": "orchestrator-lapwing"
     }
   ]
